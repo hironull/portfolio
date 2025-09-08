@@ -111,9 +111,9 @@ export const Skills = () => {
                       Always learning, always growing
                     </p>
                     <div className="flex justify-center space-x-4 text-xs font-mono">
-                      <span className="text-accent">Years of Experience: 5+</span>
+                      <span className="text-accent">Years of Experience: 3+</span>
                       <span className="text-muted-foreground">•</span>
-                      <span className="text-accent">Projects Completed: 50+</span>
+                      <span className="text-accent">Projects Completed: 35+</span>
                       <span className="text-muted-foreground">•</span>
                       <span className="text-accent">Technologies Mastered: 20+</span>
                     </div>
