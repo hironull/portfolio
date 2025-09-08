@@ -5,27 +5,18 @@ import { ExternalLink, Github, Clock, Star } from "lucide-react";
 import { Button } from "./ui/button";
 import { portfolioConfig } from "../config/portfolio.config";
 
-// Debug logging
-console.log("TerminalWindow:", TerminalWindow);
-console.log("AnimatedSection:", AnimatedSection);
-console.log("Badge:", Badge);
-console.log("ExternalLink:", ExternalLink);
-console.log("Github:", Github);
-console.log("Clock:", Clock);
-console.log("Star:", Star);
-console.log("Button:", Button);
-console.log("portfolioConfig:", portfolioConfig);
-
 const statusIcons = {
   production: Star,
   development: Clock,
-  archived: Clock
+  archived: Clock,
+  "coming soon": Clock
 };
 
 const statusColors = {
   production: "bg-primary text-primary-foreground",
   development: "bg-yellow-500 text-black", 
-  archived: "bg-muted text-muted-foreground"
+  archived: "bg-muted text-muted-foreground",
+  "coming soon": "bg-blue-500 text-white"
 };
 
 export const Projects = () => {
