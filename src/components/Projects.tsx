@@ -5,6 +5,17 @@ import { ExternalLink, Github, Clock, Star } from "lucide-react";
 import { Button } from "./ui/button";
 import { portfolioConfig } from "../config/portfolio.config";
 
+// Debug logging
+console.log("TerminalWindow:", TerminalWindow);
+console.log("AnimatedSection:", AnimatedSection);
+console.log("Badge:", Badge);
+console.log("ExternalLink:", ExternalLink);
+console.log("Github:", Github);
+console.log("Clock:", Clock);
+console.log("Star:", Star);
+console.log("Button:", Button);
+console.log("portfolioConfig:", portfolioConfig);
+
 const statusIcons = {
   production: Star,
   development: Clock,
