@@ -1,0 +1,607 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Fira+Code:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Advanced Pixel Terminal Portfolio Design System */
+
+@layer base {
+  :root {
+    /* Pure Black Theme with Purple Buttons */
+    --background: 0 0% 0%;
+    --background-secondary: 0 0% 2%;
+    --foreground: 0 0% 100%;
+
+    --terminal-bg: 0 0% 0%;
+    --terminal-border: 0 0% 20%;
+    --terminal-window: 0 0% 2%;
+    --terminal-accent: 284 31% 65%;
+    
+    --card: 0 0% 0%;
+    --card-foreground: 0 0% 100%;
+    --card-border: 0 0% 15%;
+    --card-hover: 0 0% 3%;
+
+    --primary: 0 0% 0%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 0 0% 10%;
+
+    --secondary: 284 31% 65%;
+    --secondary-foreground: 0 0% 0%;
+    --secondary-hover: 284 35% 70%;
+
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 60%;
+
+    --accent: 284 31% 65%;
+    --accent-foreground: 0 0% 0%;
+    --accent-glow: 284 35% 70%;
+
+    --border: 0 0% 15%;
+    --border-hover: 284 31% 65%;
+    --input: 0 0% 5%;
+    --ring: 284 31% 65%;
+
+    /* Advanced Gradients */
+    --gradient-terminal: linear-gradient(135deg, hsl(var(--terminal-bg)), hsl(var(--terminal-window)));
+    --gradient-glow: radial-gradient(circle at center, hsl(var(--primary) / 0.15), transparent 70%);
+    --gradient-border: linear-gradient(90deg, hsl(var(--border)), hsl(var(--border-hover)), hsl(var(--border)));
+    --gradient-text: linear-gradient(135deg, hsl(var(--foreground)), hsl(var(--muted-foreground)));
+
+    /* Shadows & Effects */
+    --shadow-terminal: 
+      0 0 0 1px hsl(var(--terminal-border) / 0.8),
+      0 8px 32px hsl(0 0% 0% / 0.6),
+      0 20px 60px hsl(0 0% 0% / 0.3),
+      inset 0 1px 0 hsl(0 0% 100% / 0.1);
+    
+    --shadow-glow: 
+      0 0 20px hsl(var(--primary) / 0.3),
+      0 0 40px hsl(var(--primary) / 0.15),
+      0 0 80px hsl(var(--primary) / 0.05);
+    
+    --shadow-hover: 
+      0 10px 40px hsl(0 0% 0% / 0.4),
+      0 20px 80px hsl(0 0% 0% / 0.2);
+
+    /* Advanced Transitions */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    --transition-elastic: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+    --radius: 0.75rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+    line-height: 1.6;
+    overflow-x: hidden;
+    background-image: url('/src/assets/hero-background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+  }
+
+  /* Advanced Terminal Styling */
+  .terminal-window {
+    background: var(--gradient-terminal);
+    border: 2px solid hsl(var(--terminal-border));
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-terminal);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .terminal-window::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--gradient-glow);
+    opacity: 0;
+    transition: var(--transition-smooth);
+    pointer-events: none;
+  }
+
+  .terminal-window:hover::before {
+    opacity: 1;
+  }
+
+  /* Enhanced Terminal Header */
+  .terminal-header {
+    background: hsl(var(--terminal-bg));
+    border-bottom: 1px solid hsl(var(--terminal-border));
+    border-radius: var(--radius) var(--radius) 0 0;
+    position: relative;
+  }
+
+  .terminal-header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--gradient-border);
+  }
+
+  /* Pixel Perfect Rendering */
+  .pixel-art {
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+    filter: contrast(1.1) brightness(1.05);
+  }
+
+  /* Advanced Animations */
+  @keyframes matrix-rain {
+    0% { transform: translateY(-100vh); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { transform: translateY(100vh); opacity: 0; }
+  }
+
+  @keyframes glow-pulse {
+    0%, 100% { 
+      box-shadow: 0 0 20px hsl(var(--primary) / 0.3);
+    }
+    50% { 
+      box-shadow: 0 0 40px hsl(var(--primary) / 0.6),
+                  0 0 80px hsl(var(--primary) / 0.3);
+    }
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+
+  @keyframes slide-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slide-in-left {
+    from {
+      opacity: 0;
+      transform: translateX(-30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slide-in-right {
+    from {
+      opacity: 0;
+      transform: translateX(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes typewriter {
+    from { width: 0; }
+    to { width: 100%; }
+  }
+
+  @keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+  }
+
+  @keyframes scan-line {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
+
+  /* Enhanced Interactive Elements */
+  .cursor {
+    animation: blink 1.2s infinite;
+  }
+
+  .typing-animation {
+    overflow: hidden;
+    white-space: nowrap;
+    animation: typewriter 2s steps(40, end);
+  }
+
+  .float-animation {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .glow-pulse {
+    animation: glow-pulse 2s ease-in-out infinite;
+  }
+
+  .slide-in-up {
+    animation: slide-in-up 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  }
+
+  .slide-in-left {
+    animation: slide-in-left 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  }
+
+  .slide-in-right {
+    animation: slide-in-right 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  }
+
+  .fade-in {
+    animation: fade-in 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  }
+
+  /* Stagger Animation Delays */
+  .stagger-1 { animation-delay: 0.1s; }
+  .stagger-2 { animation-delay: 0.2s; }
+  .stagger-3 { animation-delay: 0.3s; }
+  .stagger-4 { animation-delay: 0.4s; }
+  .stagger-5 { animation-delay: 0.5s; }
+  .stagger-6 { animation-delay: 0.6s; }
+
+  /* Advanced Hover Effects */
+  .terminal-hover {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    transform-origin: center;
+  }
+
+  .terminal-hover::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, hsl(var(--accent) / 0.2), hsl(var(--accent) / 0.1));
+    transform: translateX(-100%) translateY(-100%);
+    transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    border-radius: inherit;
+  }
+
+  .terminal-hover:hover::before {
+    transform: translateX(0) translateY(0);
+  }
+
+  .terminal-hover:hover {
+    background: hsl(var(--accent));
+    border-color: hsl(var(--accent-glow));
+    box-shadow: 
+      0 8px 25px hsl(var(--accent) / 0.3),
+      0 0 0 1px hsl(var(--accent-glow) / 0.5),
+      inset 0 1px 0 hsl(var(--foreground) / 0.1);
+    transform: translateY(-3px) scale(1.02);
+  }
+
+  .terminal-hover:active {
+    transform: translateY(-1px) scale(1.01);
+    transition: all 0.1s ease;
+  }
+
+  /* Skill Progress Animations */
+  .skill-progress {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .skill-progress::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background: linear-gradient(90deg, 
+      transparent, 
+      hsl(var(--primary) / 0.3), 
+      transparent
+    );
+    width: 30%;
+    animation: scan-line 2s infinite;
+    animation-delay: var(--scan-delay, 0s);
+  }
+
+  /* Enhanced Project Cards */
+  .project-card {
+    background: var(--gradient-terminal);
+    border: 1px solid hsl(var(--card-border));
+    transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    position: relative;
+    overflow: hidden;
+    transform-origin: center bottom;
+    backdrop-filter: blur(10px);
+  }
+
+  .project-card::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    background: linear-gradient(135deg, 
+      hsl(var(--accent) / 0.3), 
+      hsl(var(--accent-glow) / 0.2), 
+      hsl(var(--accent) / 0.1)
+    );
+    border-radius: inherit;
+    opacity: 0;
+    transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    z-index: -1;
+    filter: blur(15px);
+  }
+
+  .project-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+      transparent, 
+      hsl(var(--accent) / 0.15), 
+      transparent
+    );
+    transition: left 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .project-card:hover::before {
+    opacity: 1;
+    filter: blur(8px);
+  }
+
+  .project-card:hover::after {
+    left: 100%;
+  }
+
+  .project-card:hover {
+    transform: translateY(-12px) scale(1.03) rotateX(2deg);
+    box-shadow: 
+      0 25px 60px hsl(var(--background) / 0.9),
+      0 15px 40px hsl(var(--accent) / 0.25),
+      0 0 0 1px hsl(var(--accent) / 0.4),
+      inset 0 1px 0 hsl(var(--foreground) / 0.1);
+    border-color: hsl(var(--accent) / 0.6);
+    backdrop-filter: blur(20px);
+  }
+
+  /* Skill Badge Enhancement */
+  .skill-badge {
+    background: linear-gradient(135deg, 
+      hsl(var(--terminal-bg) / 0.8), 
+      hsl(var(--terminal-window) / 0.6)
+    );
+    border: 1px solid hsl(var(--card-border));
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    backdrop-filter: blur(10px);
+  }
+
+  .skill-badge:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 
+      0 15px 30px hsl(var(--accent) / 0.2),
+      0 0 0 1px hsl(var(--accent) / 0.3);
+    backdrop-filter: blur(15px);
+  }
+
+  /* Matrix Rain Effect */
+  .matrix-rain {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  .matrix-char {
+    position: absolute;
+    color: hsl(var(--primary));
+    font-family: 'Fira Code', monospace;
+    font-size: 14px;
+    animation: matrix-rain linear infinite;
+    opacity: 0.6;
+  }
+
+  /* Scroll Progress Indicator */
+  .scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    background: linear-gradient(90deg, 
+      hsl(var(--primary)), 
+      hsl(var(--primary-glow))
+    );
+    z-index: 1000;
+    transition: var(--transition-smooth);
+  }
+
+  /* Loading States */
+  .skeleton {
+    background: linear-gradient(90deg,
+      hsl(var(--muted)) 0%,
+      hsl(var(--accent)) 50%,
+      hsl(var(--muted)) 100%
+    );
+    background-size: 200% 100%;
+    animation: skeleton-loading 1.5s ease-in-out infinite;
+  }
+
+  @keyframes skeleton-loading {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+
+  /* Enhanced Animation utilities */
+  .float-animation {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .skill-progress::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    background: linear-gradient(90deg, hsl(var(--primary)), hsl(var(--accent)));
+    animation: skill-load 2s ease-out forwards;
+    width: 0%;
+  }
+
+  /* Glass morphism effects */
+  .glass-card {
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(10px);
+    border: 1px solid hsl(var(--primary) / 0.15);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .glass-card:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: hsl(var(--primary) / 0.3);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Enhanced Hover lift effect */
+  .hover-lift {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+  }
+
+  .hover-lift::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(135deg, hsl(var(--accent) / 0.1), transparent);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+  }
+
+  .hover-lift:hover::before {
+    opacity: 1;
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 
+      0 20px 60px hsl(0 0% 0% / 0.6),
+      0 0 50px hsl(var(--accent) / 0.2);
+  }
+
+  /* Enhanced Glass Card */
+  .glass-card {
+    background: linear-gradient(
+      135deg,
+      hsl(var(--card) / 0.15) 0%,
+      hsl(var(--card) / 0.08) 100%
+    );
+    backdrop-filter: blur(25px);
+    border: 1px solid hsl(var(--border) / 0.3);
+    box-shadow: 
+      0 8px 32px hsl(0 0% 0% / 0.4),
+      inset 0 1px 0 hsl(0 0% 100% / 0.1);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .glass-card:hover {
+    background: linear-gradient(
+      135deg,
+      hsl(var(--card) / 0.2) 0%,
+      hsl(var(--card) / 0.12) 100%
+    );
+    border-color: hsl(var(--accent) / 0.4);
+    box-shadow: 
+      0 12px 48px hsl(0 0% 0% / 0.5),
+      0 0 40px hsl(var(--accent) / 0.1),
+      inset 0 1px 0 hsl(0 0% 100% / 0.15);
+    transform: translateY(-4px);
+  }
+
+  /* Scroll sections */
+  .scroll-section {
+    scroll-margin-top: 2rem;
+  }
+
+  /* Enhanced float animations */
+  @keyframes float-delayed {
+    0%, 100% {
+      transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+      transform: translateY(-20px) rotate(2deg);
+    }
+  }
+
+  @keyframes float-slow {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  @keyframes skill-load {
+    to {
+      width: var(--skill-progress, 50%);
+    }
+  }
+
+  /* New animation classes */
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-float-delayed {
+    animation: float-delayed 8s ease-in-out infinite;
+    animation-delay: 2s;
+  }
+
+  .animate-float-slow {
+    animation: float-slow 10s ease-in-out infinite;
+    animation-delay: 4s;
+  }
+
+  /* Performance optimizations */
+  * {
+    will-change: auto;
+  }
+
+  .glass-card,
+  .hover-lift,
+  .terminal-hover {
+    will-change: transform, opacity;
+  }
+
+  /* Reduce motion for accessibility */
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+    
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}
