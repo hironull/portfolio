@@ -100,7 +100,7 @@ export const Hero = () => {
                 <Button 
                   variant="outline" 
                   size="lg" 
-                  className="hover-lift border-primary/30 hover:border-primary/60 hover:bg-primary/10 transition-all duration-300 group"
+                  className="hover-lift border-accent/30 hover:border-accent hover:bg-accent/10 transition-all duration-300 group"
                   onClick={() => window.open(social.github, '_blank')}
                 >
                   <Github className="w-4 h-4 mr-2 group-hover:rotate-12 transition-transform duration-300" />
@@ -109,7 +109,7 @@ export const Hero = () => {
                 <Button 
                   variant="outline" 
                   size="lg" 
-                  className="hover-lift border-primary/30 hover:border-primary/60 hover:bg-primary/10 transition-all duration-300 group"
+                  className="hover-lift border-accent/30 hover:border-accent hover:bg-accent/10 transition-all duration-300 group"
                   onClick={() => scrollToSection('contact')}
                 >
                   <FileText className="w-4 h-4 mr-2 group-hover:scale-110 transition-transform duration-300" />
@@ -118,7 +118,7 @@ export const Hero = () => {
                 <Button 
                   variant="outline" 
                   size="lg" 
-                  className="hover-lift border-primary/30 hover:border-primary/60 hover:bg-primary/10 transition-all duration-300 group"
+                  className="hover-lift border-accent/30 hover:border-accent hover:bg-accent/10 transition-all duration-300 group"
                   onClick={() => scrollToSection('projects')}
                 >
                   <Download className="w-4 h-4 mr-2 group-hover:scale-110 transition-transform duration-300" />

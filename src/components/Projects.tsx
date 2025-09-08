@@ -46,11 +46,11 @@ export const Projects = () => {
                       <div className="glass-card p-6 rounded-xl hover-lift group h-full flex flex-col">
                         <div className="flex justify-between items-start mb-4">
                           <div className="flex items-center space-x-3">
-                            <h3 className="text-xl font-bold text-foreground group-hover:text-primary transition-colors duration-300">
+                            <h3 className="text-xl font-bold text-foreground group-hover:text-accent transition-colors duration-300">
                               {project.name}
                             </h3>
                             {project.featured && (
-                              <Badge variant="secondary" className="text-xs bg-primary/20 text-primary border-primary/30">
+                              <Badge variant="secondary" className="text-xs bg-accent/20 text-accent border-accent/30">
                                 Featured
                               </Badge>
                             )}
@@ -82,7 +82,7 @@ export const Projects = () => {
                             >
                               <Badge 
                                 variant="outline" 
-                                className="text-xs border-primary/30 hover:border-primary/60 hover:bg-primary/10 transition-all duration-300"
+                                className="text-xs border-accent/30 hover:border-accent/60 hover:bg-accent/10 transition-all duration-300"
                               >
                                 {tag}
                               </Badge>
