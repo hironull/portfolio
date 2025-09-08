@@ -27,21 +27,21 @@
     --primary-foreground: 0 0% 100%;
     --primary-glow: 0 0% 10%;
 
-    --secondary: 270 80% 75%;
+    --secondary: 285 62% 84%;
     --secondary-foreground: 0 0% 0%;
-    --secondary-hover: 270 85% 85%;
+    --secondary-hover: 285 65% 88%;
 
     --muted: 0 0% 15%;
     --muted-foreground: 0 0% 60%;
 
-    --accent: 270 80% 75%;
+    --accent: 285 62% 84%;
     --accent-foreground: 0 0% 0%;
-    --accent-glow: 270 85% 85%;
+    --accent-glow: 285 65% 88%;
 
     --border: 0 0% 15%;
-    --border-hover: 270 80% 75%;
+    --border-hover: 285 62% 84%;
     --input: 0 0% 5%;
-    --ring: 270 80% 75%;
+    --ring: 285 62% 84%;
 
     /* Advanced Gradients */
     --gradient-terminal: linear-gradient(135deg, hsl(var(--terminal-bg)), hsl(var(--terminal-window)));
