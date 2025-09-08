@@ -151,6 +151,6 @@ export const portfolioConfig = {
     soundEffects: false,
     darkMode: false, // Always dark for terminal theme
     analytics: false,
-    showCodeButtons: false // Toggle to show/hide code buttons in projects
+    showCodeButtons: true // Toggle to show/hide code buttons in projects
   }
 };

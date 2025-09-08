@@ -95,22 +95,22 @@ export const Projects = () => {
                             <Button 
                               variant="outline" 
                               size="sm"
-                              className="hover-lift border-primary/30 hover:border-primary/60 hover:bg-primary/10 transition-all duration-300 group"
+                              className="premium-button group relative overflow-hidden border-accent/40 hover:border-accent/80 bg-gradient-to-r from-background/80 to-background/60 hover:from-accent/10 hover:to-secondary/5 transition-all duration-500"
                               onClick={() => window.open(project.links.live, '_blank')}
                             >
-                              <ExternalLink className="w-4 h-4 mr-2 group-hover:rotate-12 transition-transform duration-300" />
-                              Visit Now
+                              <ExternalLink className="w-4 h-4 mr-2 group-hover:rotate-12 group-hover:scale-110 transition-all duration-300" />
+                              <span className="relative z-10">Visit Now</span>
                             </Button>
                           )}
                           {portfolioConfig.features.showCodeButtons && project.links.github && (
                             <Button 
                               variant="outline" 
                               size="sm"
-                              className="hover-lift border-primary/30 hover:border-primary/60 hover:bg-primary/10 transition-all duration-300 group"
+                              className="premium-button group relative overflow-hidden border-accent/40 hover:border-accent/80 bg-gradient-to-r from-background/80 to-background/60 hover:from-accent/10 hover:to-secondary/5 transition-all duration-500"
                               onClick={() => window.open(project.links.github, '_blank')}
                             >
-                              <Github className="w-4 h-4 mr-2 group-hover:rotate-12 transition-transform duration-300" />
-                              Code
+                              <Github className="w-4 h-4 mr-2 group-hover:rotate-12 group-hover:scale-110 transition-all duration-300" />
+                              <span className="relative z-10">Code</span>
                             </Button>
                           )}
                         </div>
