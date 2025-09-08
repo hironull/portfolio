@@ -147,9 +147,9 @@ export const portfolioConfig = {
   // Feature Flags
   features: {
     particles: true,
-    matrixRain: false,
+    matrixRain: true,
     soundEffects: false,
-    darkMode: false, // Always dark for terminal theme
+    darkMode: true, // Always dark for terminal theme
     analytics: false,
     showCodeButtons: false // Toggle to show/hide code buttons in projects
   }
