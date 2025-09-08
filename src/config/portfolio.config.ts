@@ -3,10 +3,10 @@ export const portfolioConfig = {
   // Personal Information
   personal: {
     name: "Hiro",
-    title: "Full-Stack Developer",
+    title: "Full-Stack Web Developer",
     tagline: "Hi I'm Hiro and I'm passionate about crafting digital experiences. Welcome to my little corner on the internet. I make, bake and break software for the most innovative projects.",
-    email: "me@hiromull.lol",
-    location: "Digital Nomad",
+    email: "me@hironull.lol",
+    location: "N/A",
     avatar: "/src/assets/pixel-avatar.png"
   },
 
@@ -49,82 +49,82 @@ export const portfolioConfig = {
     { name: "TypeScript", category: "Language", level: 90 },
     { name: "Node.js", category: "Backend", level: 85 },
     { name: "Python", category: "Language", level: 80 },
-    { name: "Databases", category: "Backend", level: 85 },
-    { name: "UI/UX", category: "Design", level: 75 },
-    { name: "Infrastructure", category: "DevOps", level: 70 },
-    { name: "DevOps", category: "DevOps", level: 75 }
+    { name: "Databases", category: "Backend", level: 68 },
+    { name: "UI/UX", category: "Design", level: 95 },
+    { name: "Infrastructure", category: "DevOps", level: 94 },
+    { name: "DevOps", category: "DevOps", level: 70 }
   ],
 
   // Projects Configuration
   projects: [
     {
-      name: "StrelineCloud",
-      year: "2023",
+      name: "StrelixCloud",
+      year: "2025",
       description: "High-performance hosting, custom development, and premium digital solutions for modern businesses and gaming communities.",
-      tags: ["PHP", "Docker", "K8s"],
+      tags: ["Pterodactyl", "Proxmox", "Docker"],
       status: "production",
       featured: true,
       links: {
-        github: "https://github.com/hiro/strelinecloud",
-        live: "https://strelinecloud.com"
+        github: "https://github.com/hironull",
+        live: "https://strelixcloud.com"
       }
     },
     {
-      name: "Strelizia",
-      year: "2023", 
-      description: "Advanced Discord moderation and management bot with custom commands, automod features, and community engagement tools.",
-      tags: ["Discord.py", "Python3", "SQL"],
+      name: "Aerox",
+      year: "2025", 
+      description: "An Development and coders hub.",
+      tags: ["Discord.py", "Python3", "Nodejs"],
       status: "production",
       featured: true,
       links: {
         github: "https://github.com/hiro/strelizia",
-        live: "https://discord.com/application-directory/strelizia"
+        live: "https://discord.gg/ZVz7CgTy5v"
       }
     },
     {
-      name: "Adios",
-      year: "2023",
-      description: "Modern JavaScript framework for building reactive web applications with enhanced performance and developer experience.",
+      name: "Addiee",
+      year: "2025",
+      description: "An Next Generation Discord bot.",
       tags: ["React", "TypeScript", "Node.js"],
-      status: "development",
-      featured: true,
+      status: "coming soon",
+      featured: false,
       links: {
         github: "https://github.com/hiro/adios",
-        live: "https://adios-framework.dev"
+        live: "https://discord.gg/strelix"
       }
     },
     {
-      name: "CloudSync",
-      year: "2024",
-      description: "Real-time cloud storage synchronization platform with advanced file management and collaboration features.",
+      name: "Strelixactyl",
+      year: "2025",
+      description: "Pterodactyl panel's alternative with more features and modern design.",
       tags: ["Next.js", "Supabase", "TypeScript"],
-      status: "production",
-      featured: true,
+      status: "coming soon",
+      featured: false,
       links: {
         github: "https://github.com/hiro/cloudsync",
-        live: "https://cloudsync.dev"
+        live: "https://discord.gg/strelix"
       }
     },
     {
-      name: "DataViz Pro",
-      year: "2024",
+      name: "Strelix selfbot",
+      year: "2025",
       description: "Interactive data visualization toolkit for creating beautiful charts and dashboards with real-time analytics.",
-      tags: ["D3.js", "React", "Python"],
-      status: "production",
+      tags: ["JavaScript", "nodejs", "selfbot.js"],
+      status: "coming soon",
       featured: false,
       links: {
         github: "https://github.com/hiro/dataviz-pro",
-        live: "https://dataviz-pro.com"
+        live: "https://discord.gg/strelix"
       }
     }
   ],
 
   // Social Links
   social: {
-    github: "https://github.com/hiro",
+    github: "https://github.com/hironull",
     linkedin: "https://linkedin.com/in/hiro",
     twitter: "https://twitter.com/hiro",
-    email: "mailto:me@hiromull.lol"
+    email: "mailto:me@hironull.lol"
   },
 
   // Content Sections
@@ -151,6 +151,6 @@ export const portfolioConfig = {
     soundEffects: false,
     darkMode: false, // Always dark for terminal theme
     analytics: false,
-    showCodeButtons: true // Toggle to show/hide code buttons in projects
+    showCodeButtons: false // Toggle to show/hide code buttons in projects
   }
 };
