@@ -1,6 +1,6 @@
 import { TerminalWindow } from "./TerminalWindow";
 import { AnimatedSection } from "./AnimatedSection";
-import { Mail, Github } from "lucide-react";
+import { Mail, Github, MessageCircle } from "lucide-react";
 import { Button } from "./ui/button";
 import { portfolioConfig } from "../config/portfolio.config";
 
@@ -58,6 +58,15 @@ export const Contact = () => {
                     >
                       <Github className="w-4 h-4 mr-2" />
                       GitHub
+                    </Button>
+                    <Button 
+                      variant="outline" 
+                      size="sm"
+                      className="terminal-hover font-mono stagger-3 transition-all duration-300 hover:scale-105 hover:shadow-lg"
+                      onClick={() => window.open('https://discord.com/users/hironull', '_blank')}
+                    >
+                      <MessageCircle className="w-4 h-4 mr-2" />
+                      Discord
                     </Button>
                   </div>
                 </AnimatedSection>
