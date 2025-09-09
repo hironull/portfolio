@@ -52,32 +52,28 @@ export const Skills = () => {
                   return (
                     <AnimatedSection
                       key={skill.name}
-                      animation="slide-in-up"
-                      delay={3 + index * 0.1}
+                      animation="fade-in"
+                      delay={1 + index * 0.05}
                     >
-                      <div className="skill-badge p-6 rounded-xl text-center group relative overflow-hidden bg-terminal-window/50 backdrop-blur-sm border border-accent/20 hover:border-accent/60 transition-all duration-500 hover:scale-105">
-                        {/* Background glow effect */}
-                        <div className="absolute inset-0 bg-gradient-to-br from-accent/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                        
+                      <div className="skill-badge p-6 rounded-xl text-center group relative bg-terminal-window/50 border border-accent/20 hover:border-accent/40 transition-all duration-300 hover:scale-105">
                         <div className="relative z-10">
-                          {/* Icon with enhanced hover effect */}
-                          <div className="mb-4 relative">
-                            <div className="absolute inset-0 bg-accent/20 rounded-full blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                            <IconComponent className="w-10 h-10 mx-auto text-accent group-hover:text-accent-glow group-hover:scale-110 transition-all duration-300 relative z-10" />
+                          {/* Simplified Icon */}
+                          <div className="mb-4">
+                            <IconComponent className="w-10 h-10 mx-auto text-accent group-hover:scale-110 transition-transform duration-200" />
                           </div>
                           
-                          <span className="text-base font-mono block mb-3 text-foreground group-hover:text-accent transition-colors duration-300">
+                          <span className="text-base font-mono block mb-3 text-foreground group-hover:text-accent transition-colors duration-200">
                             {skill.name}
                           </span>
                           
-                          {/* Enhanced Skill Level Bar */}
+                          {/* Simplified Skill Level Bar */}
                           <div className="space-y-2">
-                            <div className="w-full bg-muted/30 rounded-full h-2 overflow-hidden backdrop-blur-sm border border-accent/20">
+                            <div className="w-full bg-muted/30 rounded-full h-2 overflow-hidden">
                               <div 
-                                className="h-full bg-gradient-to-r from-accent to-accent-glow transition-all duration-1500 ease-out rounded-full shadow-lg shadow-accent/30"
+                                className="h-full bg-gradient-to-r from-accent to-accent-glow transition-all duration-1000 ease-out rounded-full"
                                 style={{ 
                                   width: `${skill.level}%`,
-                                  animationDelay: `${(3 + index * 0.1) * 100 + 500}ms`
+                                  transitionDelay: `${(1 + index * 0.05) * 100 + 300}ms`
                                 }}
                               />
                             </div>
@@ -91,12 +87,6 @@ export const Skills = () => {
                             </div>
                           </div>
                         </div>
-                        
-                        {/* Enhanced scan line effect */}
-                        <div 
-                          className="absolute top-0 left-0 w-full h-full skill-progress opacity-50"
-                          style={{ '--scan-delay': `${index * 0.3}s` } as React.CSSProperties}
-                        />
                       </div>
                     </AnimatedSection>
                   );
