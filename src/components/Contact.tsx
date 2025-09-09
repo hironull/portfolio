@@ -63,7 +63,16 @@ export const Contact = () => {
                       variant="outline" 
                       size="sm"
                       className="terminal-hover font-mono stagger-3 transition-all duration-300 hover:scale-105 hover:shadow-lg"
-                      onClick={() => window.open('https://discord.com/users/hironull', '_blank')}
+                      onClick={(event) => {
+                        navigator.clipboard.writeText('hironull');
+                        // Create a temporary tooltip or alert
+                        const button = event.currentTarget as HTMLButtonElement;
+                        const originalText = button.textContent;
+                        button.textContent = 'Username copied!';
+                        setTimeout(() => {
+                          button.innerHTML = '<svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-3.582 8-8 8a8.959 8.959 0 01-4.906-1.681L3 21l2.681-5.094A8.959 8.959 0 013 12c0-4.418 3.582-8 8-8s8 3.582 8 8z"></path></svg>Discord';
+                        }, 2000);
+                      }}
                     >
                       <MessageCircle className="w-4 h-4 mr-2" />
                       Discord
