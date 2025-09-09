@@ -7,31 +7,61 @@ import { Label } from "../components/ui/label";
 import { ArrowLeft, Calculator, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 
-const Converter = () => {
-  const [gigabytes, setGigabytes] = useState<string>("512");
-  const [result, setResult] = useState<{ decimal: number; binary: number } | null>(null);
+type ConversionType = {
+  from: string;
+  to: string;
+  decimalRate: number;
+  binaryRate: number;
+  title: string;
+};
 
-  const convertToMegabytes = () => {
-    const gb = parseFloat(gigabytes);
-    if (isNaN(gb)) return;
+const conversions: { [key: string]: ConversionType } = {
+  "GB to MB": { from: "GB", to: "MB", decimalRate: 1000, binaryRate: 1024, title: "Gigabytes to Megabytes Converter" },
+  "MB to GB": { from: "MB", to: "GB", decimalRate: 0.001, binaryRate: 1/1024, title: "Megabytes to Gigabytes Converter" },
+  "GB to TB": { from: "GB", to: "TB", decimalRate: 0.001, binaryRate: 1/1024, title: "Gigabytes to Terabytes Converter" },
+  "GB to KB": { from: "GB", to: "KB", decimalRate: 1000000, binaryRate: 1024*1024, title: "Gigabytes to Kilobytes Converter" }
+};
+
+const Converter = () => {
+  const [inputValue, setInputValue] = useState<string>("512");
+  const [result, setResult] = useState<{ decimal: number; binary: number } | null>(null);
+  const [currentConversion, setCurrentConversion] = useState<string>("GB to MB");
+
+  const convert = () => {
+    const input = parseFloat(inputValue);
+    if (isNaN(input)) return;
     
-    const decimalMB = gb * 1000; // 1 GB = 1000 MB (decimal)
-    const binaryMB = gb * 1024; // 1 GB = 1024 MB (binary)
+    const conversion = conversions[currentConversion];
+    const decimalResult = input * conversion.decimalRate;
+    const binaryResult = input * conversion.binaryRate;
     
-    setResult({ decimal: decimalMB, binary: binaryMB });
+    setResult({ decimal: decimalResult, binary: binaryResult });
   };
 
   const handleInputChange = (value: string) => {
-    setGigabytes(value);
+    setInputValue(value);
     // Auto-convert as user types
-    const gb = parseFloat(value);
-    if (!isNaN(gb) && gb > 0) {
-      const decimalMB = gb * 1000;
-      const binaryMB = gb * 1024;
-      setResult({ decimal: decimalMB, binary: binaryMB });
+    const input = parseFloat(value);
+    if (!isNaN(input) && input > 0) {
+      const conversion = conversions[currentConversion];
+      const decimalResult = input * conversion.decimalRate;
+      const binaryResult = input * conversion.binaryRate;
+      setResult({ decimal: decimalResult, binary: binaryResult });
     } else {
       setResult(null);
     }
+  };
+
+  const handleConversionChange = (newConversion: string) => {
+    setCurrentConversion(newConversion);
+    setInputValue("512");
+    setResult(null);
+    // Auto-convert with default value
+    const input = 512;
+    const conversion = conversions[newConversion];
+    const decimalResult = input * conversion.decimalRate;
+    const binaryResult = input * conversion.binaryRate;
+    setResult({ decimal: decimalResult, binary: binaryResult });
   };
 
   return (
@@ -64,7 +94,7 @@ const Converter = () => {
                     <div className="flex items-center justify-center space-x-3">
                       <Calculator className="w-8 h-8 text-accent" />
                       <h1 className="text-3xl font-bold font-code text-foreground">
-                        Gigabytes to Megabytes Converter
+                        {conversions[currentConversion].title}
                       </h1>
                     </div>
                     <div className="w-24 h-1 bg-accent mx-auto rounded-full shadow-lg shadow-accent/50" />
@@ -75,22 +105,22 @@ const Converter = () => {
                 <AnimatedSection delay={2}>
                   <div className="max-w-md mx-auto space-y-6">
                     <div className="space-y-2">
-                      <Label htmlFor="gigabytes" className="text-foreground font-mono">
-                        Gigabytes
+                      <Label htmlFor="input-value" className="text-foreground font-mono">
+                        {conversions[currentConversion].from}
                       </Label>
                       <Input
-                        id="gigabytes"
+                        id="input-value"
                         type="number"
-                        value={gigabytes}
+                        value={inputValue}
                         onChange={(e) => handleInputChange(e.target.value)}
-                        placeholder="Enter GB value"
+                        placeholder={`Enter ${conversions[currentConversion].from} value`}
                         className="bg-terminal-window/50 border-accent/30 text-foreground font-mono text-lg text-center"
                       />
                     </div>
 
                     <div className="flex justify-center">
                       <Button
-                        onClick={convertToMegabytes}
+                        onClick={convert}
                         className="bg-accent hover:bg-accent/80 text-white font-mono px-8 py-2"
                       >
                         Convert
@@ -104,22 +134,22 @@ const Converter = () => {
                   <AnimatedSection animation="fade-in" delay={3}>
                     <div className="space-y-4">
                       <div className="flex items-center justify-center space-x-2 text-accent font-mono">
-                        <span>Gigabytes</span>
+                        <span>{conversions[currentConversion].from}</span>
                         <ArrowRight className="w-4 h-4" />
-                        <span>Megabytes</span>
+                        <span>{conversions[currentConversion].to}</span>
                       </div>
                       
                       <div className="bg-terminal-window/30 backdrop-blur-sm p-6 rounded-xl border border-accent/20 space-y-3">
                         <div className="text-foreground font-mono">
-                          <span className="text-accent font-bold">{gigabytes} GB</span>
+                          <span className="text-accent font-bold">{inputValue} {conversions[currentConversion].from}</span>
                           <span className="text-muted-foreground"> = </span>
-                          <span className="text-accent font-bold">{result.decimal.toLocaleString()} MB</span>
+                          <span className="text-accent font-bold">{result.decimal.toLocaleString()} {conversions[currentConversion].to}</span>
                           <span className="text-muted-foreground"> (in decimal)</span>
                         </div>
                         <div className="text-foreground font-mono">
-                          <span className="text-accent font-bold">{gigabytes} GB</span>
+                          <span className="text-accent font-bold">{inputValue} {conversions[currentConversion].from}</span>
                           <span className="text-muted-foreground"> = </span>
-                          <span className="text-accent font-bold">{result.binary.toLocaleString()} MB</span>
+                          <span className="text-accent font-bold">{result.binary.toLocaleString()} {conversions[currentConversion].to}</span>
                           <span className="text-muted-foreground"> (in binary)</span>
                         </div>
                       </div>
@@ -132,23 +162,19 @@ const Converter = () => {
                   <div className="text-center space-y-4">
                     <h3 className="text-lg font-mono text-foreground">Quick Conversions</h3>
                     <div className="flex flex-wrap justify-center gap-2">
-                      {[
-                        { label: "MB to GB", from: "MB", to: "GB" },
-                        { label: "GB to TB", from: "GB", to: "TB" },
-                        { label: "GB to MB", from: "GB", to: "MB" },
-                        { label: "GB to KB", from: "GB", to: "KB" },
-                      ].map((conversion, index) => (
+                      {Object.keys(conversions).map((conversionKey) => (
                         <Button
-                          key={conversion.label}
-                          variant="outline"
+                          key={conversionKey}
+                          variant={currentConversion === conversionKey ? "default" : "outline"}
                           size="sm"
-                          className="font-mono text-xs hover:bg-accent/20 hover:border-accent/60"
-                          onClick={() => {
-                            // For now, just show a tooltip or message
-                            console.log(`${conversion.label} conversion`);
-                          }}
+                          className={`font-mono text-xs transition-all duration-200 ${
+                            currentConversion === conversionKey 
+                              ? "bg-accent hover:bg-accent/80 text-white" 
+                              : "hover:bg-accent/20 hover:border-accent/60"
+                          }`}
+                          onClick={() => handleConversionChange(conversionKey)}
                         >
-                          {conversion.label}
+                          {conversionKey}
                         </Button>
                       ))}
                     </div>
