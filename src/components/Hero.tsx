@@ -2,9 +2,10 @@ import { useState, useEffect, useCallback } from "react";
 import { TerminalWindow } from "./TerminalWindow";
 import { AnimatedSection } from "./AnimatedSection";
 import { Button } from "./ui/button";
-import { Github, Mail, FileText, Download } from "lucide-react";
+import { Github, Mail, FileText, Download, Calculator } from "lucide-react";
 import { portfolioConfig } from "../config/portfolio.config";
 import pixelAvatar from "../assets/pixel-avatar.png";
+import { Link } from "react-router-dom";
 
 export const Hero = () => {
   const [displayText, setDisplayText] = useState("");
@@ -124,6 +125,16 @@ export const Hero = () => {
                   <Download className="w-4 h-4 mr-2 group-hover:scale-110 transition-transform duration-300" />
                   Projects
                 </Button>
+                <Link to="/converter">
+                  <Button 
+                    variant="outline" 
+                    size="lg" 
+                    className="hover-lift border-accent/30 hover:border-accent hover:bg-accent/10 transition-all duration-300 group"
+                  >
+                    <Calculator className="w-4 h-4 mr-2 group-hover:scale-110 transition-transform duration-300" />
+                    Tools
+                  </Button>
+                </Link>
               </div>
             </AnimatedSection>
 
