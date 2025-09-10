@@ -29,7 +29,7 @@ const Converter = () => {
 
   const convert = () => {
     const input = parseFloat(inputValue);
-    if (isNaN(input)) return;
+    if (isNaN(input) || input < 0) return;
     
     const conversion = conversions[currentConversion];
     const decimalResult = input * conversion.decimalRate;
@@ -42,7 +42,7 @@ const Converter = () => {
     setInputValue(value);
     // Auto-convert as user types
     const input = parseFloat(value);
-    if (!isNaN(input) && input > 0) {
+    if (!isNaN(input) && input >= 0) {
       const conversion = conversions[currentConversion];
       const decimalResult = input * conversion.decimalRate;
       const binaryResult = input * conversion.binaryRate;
@@ -54,13 +54,12 @@ const Converter = () => {
 
   const handleConversionChange = (newConversion: string) => {
     setCurrentConversion(newConversion);
-    setInputValue("512");
-    setResult(null);
-    // Auto-convert with default value
-    const input = 512;
+    const currentInputValue = parseFloat(inputValue) || 1;
+    setInputValue(currentInputValue.toString());
+    // Auto-convert with current input value
     const conversion = conversions[newConversion];
-    const decimalResult = input * conversion.decimalRate;
-    const binaryResult = input * conversion.binaryRate;
+    const decimalResult = currentInputValue * conversion.decimalRate;
+    const binaryResult = currentInputValue * conversion.binaryRate;
     setResult({ decimal: decimalResult, binary: binaryResult });
   };
 
@@ -108,14 +107,16 @@ const Converter = () => {
                       <Label htmlFor="input-value" className="text-foreground font-mono">
                         {conversions[currentConversion].from}
                       </Label>
-                      <Input
-                        id="input-value"
-                        type="number"
-                        value={inputValue}
-                        onChange={(e) => handleInputChange(e.target.value)}
-                        placeholder={`Enter ${conversions[currentConversion].from} value`}
-                        className="bg-terminal-window/50 border-accent/30 text-foreground font-mono text-lg text-center"
-                      />
+                        <Input
+                          id="input-value"
+                          type="number"
+                          min="0"
+                          step="any"
+                          value={inputValue}
+                          onChange={(e) => handleInputChange(e.target.value)}
+                          placeholder={`Enter ${conversions[currentConversion].from} value`}
+                          className="bg-terminal-window/50 border-accent/30 text-foreground font-mono text-lg text-center focus:border-accent focus:ring-2 focus:ring-accent/20"
+                        />
                     </div>
 
                     <div className="flex justify-center">
@@ -141,16 +142,16 @@ const Converter = () => {
                       
                       <div className="bg-terminal-window/30 backdrop-blur-sm p-6 rounded-xl border border-accent/20 space-y-3">
                         <div className="text-foreground font-mono">
-                          <span className="text-accent font-bold">{inputValue} {conversions[currentConversion].from}</span>
+                          <span className="text-accent font-bold">{parseFloat(inputValue).toLocaleString()} {conversions[currentConversion].from}</span>
                           <span className="text-muted-foreground"> = </span>
-                          <span className="text-accent font-bold">{result.decimal.toLocaleString()} {conversions[currentConversion].to}</span>
-                          <span className="text-muted-foreground"> (in decimal)</span>
+                          <span className="text-accent font-bold">{result.decimal.toLocaleString(undefined, { maximumFractionDigits: 6 })} {conversions[currentConversion].to}</span>
+                          <span className="text-muted-foreground"> (decimal)</span>
                         </div>
                         <div className="text-foreground font-mono">
-                          <span className="text-accent font-bold">{inputValue} {conversions[currentConversion].from}</span>
+                          <span className="text-accent font-bold">{parseFloat(inputValue).toLocaleString()} {conversions[currentConversion].from}</span>
                           <span className="text-muted-foreground"> = </span>
-                          <span className="text-accent font-bold">{result.binary.toLocaleString()} {conversions[currentConversion].to}</span>
-                          <span className="text-muted-foreground"> (in binary)</span>
+                          <span className="text-accent font-bold">{result.binary.toLocaleString(undefined, { maximumFractionDigits: 6 })} {conversions[currentConversion].to}</span>
+                          <span className="text-muted-foreground"> (binary)</span>
                         </div>
                       </div>
                     </div>
