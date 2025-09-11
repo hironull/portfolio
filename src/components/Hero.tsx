@@ -47,15 +47,49 @@ export const Hero = () => {
       <AnimatedSection animation="slide-in-up" className="w-full relative z-10">
         <TerminalWindow title="root@hiro:~#" className="w-full max-w-4xl mx-auto backdrop-blur-md bg-background/95 border border-primary/20 shadow-2xl">
           <div className="text-center space-y-8">
-            {/* Sleek Avatar */}
+            {/* Sleek Avatar with Smooth Glow */}
             <AnimatedSection animation="slide-in-up" delay={1} className="flex justify-center">
               <div className="relative group">
-                <div className="absolute -inset-2 bg-gradient-to-r from-primary/20 to-accent/20 rounded-full blur-lg opacity-50 group-hover:opacity-100 transition-opacity duration-500" />
-                <img 
-                  src={pixelAvatar} 
-                  alt={`${personal.name}'s avatar`} 
-                  className="relative w-28 h-28 rounded-full border-2 border-primary/30 group-hover:border-primary/60 transition-all duration-500 transform group-hover:scale-105"
-                />
+                {/* Outer Glow Layers */}
+                <div className="absolute -inset-6 bg-gradient-to-r from-accent/30 to-secondary/30 rounded-full blur-2xl opacity-60 animate-pulse" />
+                <div className="absolute -inset-4 bg-gradient-to-r from-accent/40 to-secondary/40 rounded-full blur-xl opacity-70 animate-pulse" style={{ animationDelay: '0.5s' }} />
+                <div className="absolute -inset-3 bg-gradient-to-r from-accent/50 to-secondary/50 rounded-full blur-lg opacity-80 group-hover:opacity-100 transition-all duration-700" />
+                
+                {/* Rotating Ring */}
+                <div className="absolute -inset-2 rounded-full animate-spin" style={{ animationDuration: '8s' }}>
+                  <div className="w-full h-full rounded-full bg-gradient-to-r from-accent/60 via-transparent via-transparent to-secondary/60 blur-sm" />
+                </div>
+                
+                {/* Inner Border Glow */}
+                <div className="absolute -inset-1 bg-gradient-to-r from-accent/60 to-secondary/60 rounded-full blur-md opacity-80 group-hover:opacity-100 transition-all duration-500" />
+                
+                {/* Avatar Container */}
+                <div className="relative">
+                  <img 
+                    src={pixelAvatar} 
+                    alt={`${personal.name}'s avatar`} 
+                    className="relative w-28 h-28 rounded-full border-2 border-accent/50 group-hover:border-accent/80 transition-all duration-700 transform group-hover:scale-105 pixel-art shadow-2xl shadow-accent/20"
+                  />
+                  
+                  {/* Inner Highlight */}
+                  <div className="absolute inset-0 rounded-full bg-gradient-to-br from-white/20 via-transparent to-transparent opacity-30 group-hover:opacity-50 transition-opacity duration-500" />
+                </div>
+                
+                {/* Floating Particles */}
+                <div className="absolute inset-0 pointer-events-none">
+                  {[...Array(6)].map((_, i) => (
+                    <div
+                      key={i}
+                      className="absolute w-1 h-1 bg-accent/60 rounded-full animate-ping opacity-60"
+                      style={{
+                        left: `${20 + Math.cos(i * 60 * Math.PI / 180) * 60}%`,
+                        top: `${20 + Math.sin(i * 60 * Math.PI / 180) * 60}%`,
+                        animationDelay: `${i * 0.5}s`,
+                        animationDuration: `${2 + i * 0.3}s`
+                      }}
+                    />
+                  ))}
+                </div>
               </div>
             </AnimatedSection>
             
