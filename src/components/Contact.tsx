@@ -35,7 +35,7 @@ export const Contact = () => {
                 
                 <AnimatedSection animation="slide-in-up" delay={5}>
                   <p className="text-muted-foreground">
-                    or connect via social media above
+                    You can also connect with me on social media
                   </p>
                 </AnimatedSection>
                 

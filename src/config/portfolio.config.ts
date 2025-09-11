@@ -4,7 +4,7 @@ export const portfolioConfig = {
   personal: {
     name: "Hiro",
     title: "Full-Stack Web Developer",
-    tagline: "Hi I'm Hiro and I'm passionate about crafting digital experiences. Welcome to my little corner on the internet. I make, bake and break software for the most innovative projects.",
+    tagline: "Hello, I'm Hiro, a professional web developer specializing in modern digital solutions. I create reliable, scalable applications that help businesses grow and succeed online.",
     email: "me@hironull.lol",
     location: "N/A",
     avatar: "/src/assets/pixel-avatar.png"
@@ -13,7 +13,7 @@ export const portfolioConfig = {
   // SEO & Meta
   seo: {
     title: "Hiro - Full Stack Developer Portfolio",
-    description: "Passionate full-stack developer crafting digital experiences. Welcome to my terminal-inspired portfolio showcasing my projects and skills.",
+    description: "Professional full-stack developer creating modern web applications. View my portfolio showcasing recent projects and technical expertise.",
     keywords: ["full-stack developer", "react", "typescript", "node.js", "python", "web development"],
     ogImage: "/og-image.png"
   },
@@ -60,7 +60,7 @@ export const portfolioConfig = {
     {
       name: "StrelixCloud",
       year: "2025",
-      description: "High-performance hosting, custom development, and premium digital solutions for modern businesses and gaming communities.",
+      description: "Professional hosting platform providing custom development and premium digital solutions for modern businesses and gaming communities.",
       tags: ["Pterodactyl", "Proxmox", "Docker"],
       status: "production",
       featured: true,
@@ -72,7 +72,7 @@ export const portfolioConfig = {
     {
       name: "Aerox",
       year: "2025", 
-      description: "An Development and coders hub.",
+      description: "A comprehensive development platform and community hub for programmers and coders.",
       tags: ["Discord.py", "Python3", "Nodejs"],
       status: "production",
       featured: true,
@@ -84,7 +84,7 @@ export const portfolioConfig = {
     {
       name: "Addiee",
       year: "2025",
-      description: "An Next Generation Discord bot.",
+      description: "Advanced Discord bot with modern features for server management and community engagement.",
       tags: ["React", "TypeScript", "Node.js"],
       status: "coming soon",
       featured: false,
@@ -96,7 +96,7 @@ export const portfolioConfig = {
     {
       name: "Strelixactyl",
       year: "2025",
-      description: "Pterodactyl panel's alternative with more features and modern design.",
+      description: "Modern alternative to Pterodactyl panel featuring enhanced functionality and contemporary design.",
       tags: ["Next.js", "Supabase", "TypeScript"],
       status: "coming soon",
       featured: false,
@@ -106,9 +106,9 @@ export const portfolioConfig = {
       }
     },
     {
-      name: "Strelix selfbot",
+      name: "Strelix Selfbot",
       year: "2025",
-      description: "Interactive data visualization toolkit for creating beautiful charts and dashboards with real-time analytics.",
+      description: "Interactive data visualization and analytics platform for creating comprehensive dashboards with real-time insights.",
       tags: ["JavaScript", "nodejs", "selfbot.js"],
       status: "coming soon",
       featured: false,
@@ -130,17 +130,17 @@ export const portfolioConfig = {
   // Content Sections
   content: {
     about: {
-      title: "About",
+      title: "About Me",
       paragraphs: [
-        "Passionate full-stack web developer who loves creating elegant solutions to complex problems. I blend creativity with technical expertise to build applications that are both functional and beautiful.",
-        "When I'm not coding, you'll find me exploring new technologies, contributing to open-source projects, or sharing knowledge with the developer community."
+        "I am a dedicated full-stack web developer with expertise in creating efficient, user-friendly applications. I focus on delivering high-quality solutions that meet business requirements and exceed user expectations.",
+        "I stay current with industry trends and best practices, continuously expanding my technical skills to provide the most effective solutions for each project."
       ],
-      availability: "Available for freelance projects"
+      availability: "Currently available for new projects"
     },
     contact: {
-      title: "Contact",
-      description: "Let's build something amazing together. I'm always excited to discuss new projects and opportunities.",
-      cta: "Thanks for visiting!"
+      title: "Get In Touch",
+      description: "I am always interested in discussing new opportunities and projects. Feel free to reach out to explore how we can work together.",
+      cta: "Thank you for visiting my portfolio!"
     }
   },
 
