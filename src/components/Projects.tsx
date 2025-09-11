@@ -26,15 +26,21 @@ export const Projects = () => {
     <section id="projects" className="py-20 px-4 scroll-section">
       <div className="max-w-6xl mx-auto">
         <AnimatedSection animation="slide-in-up">
-          <TerminalWindow title="projects.portfolio" className="backdrop-blur-md bg-background/95 border border-primary/20">
+          <TerminalWindow title="projects.portfolio" className="backdrop-blur-md bg-background/95 border border-primary/20 shadow-2xl">
             <div className="space-y-12">
               <AnimatedSection delay={0.5}>
-                <h2 className="text-3xl font-bold text-center mb-12 bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text text-transparent">
-                  Featured Projects
-                </h2>
+                <div className="text-center space-y-4">
+                  <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-foreground via-accent to-foreground bg-clip-text text-transparent">
+                    Featured Projects
+                  </h2>
+                  <div className="w-24 h-1 bg-gradient-to-r from-transparent via-accent to-transparent mx-auto rounded-full" />
+                  <p className="text-foreground/70 text-lg">
+                    A showcase of my best work and contributions
+                  </p>
+                </div>
               </AnimatedSection>
               
-              <div className="grid md:grid-cols-2 gap-8">
+              <div className="grid lg:grid-cols-2 gap-8">
                 {projects.map((project, index) => {
                   const StatusIcon = statusIcons[project.status as keyof typeof statusIcons];
                   const statusColor = statusColors[project.status as keyof typeof statusColors];
@@ -45,77 +51,95 @@ export const Projects = () => {
                       animation="slide-in-up"
                       delay={1 + index * 0.2}
                     >
-                      <div className="glass-card p-6 rounded-xl hover-lift group h-full flex flex-col">
-                        <div className="flex justify-between items-start mb-4">
-                          <div className="flex items-center space-x-3">
-                            <h3 className="text-xl font-bold text-foreground group-hover:text-accent transition-colors duration-300">
-                              {project.name}
-                            </h3>
-                            {project.featured && (
-                              <Badge variant="secondary" className="text-xs bg-accent/20 text-accent border-accent/30">
-                                Featured
+                      <div className="project-card group relative h-full flex flex-col overflow-hidden rounded-2xl border border-accent/20 bg-gradient-to-br from-background/95 to-background/80 backdrop-blur-md transition-all duration-500 hover:border-accent/40 hover:shadow-2xl hover:shadow-accent/10 hover:-translate-y-2">
+                        {/* Hover Glow Effect */}
+                        <div className="absolute inset-0 bg-gradient-to-br from-accent/5 via-transparent to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                        
+                        {/* Content */}
+                        <div className="relative z-10 p-8 flex flex-col h-full">
+                          {/* Header */}
+                          <div className="flex justify-between items-start mb-6">
+                            <div className="flex items-center space-x-3">
+                              <h3 className="text-2xl font-bold text-foreground group-hover:text-accent transition-colors duration-300">
+                                {project.name}
+                              </h3>
+                              {project.featured && (
+                                <div className="relative">
+                                  <Badge className="bg-gradient-to-r from-accent/20 to-secondary/20 text-accent border-accent/30 animate-pulse">
+                                    ⭐ Featured
+                                  </Badge>
+                                </div>
+                              )}
+                            </div>
+                            
+                            <div className="flex items-center space-x-3">
+                              <Badge 
+                                className={`${statusColor} flex items-center space-x-1 border-0 shadow-lg`}
+                              >
+                                <StatusIcon className="w-3 h-3" />
+                                <span className="capitalize text-xs font-medium">{project.status}</span>
                               </Badge>
-                            )}
+                              <div className="text-foreground/60 text-sm font-medium bg-muted/20 px-2 py-1 rounded-full">
+                                {project.year}
+                              </div>
+                            </div>
                           </div>
                           
-                          <div className="flex items-center space-x-3">
-                            <Badge 
-                              className={`text-xs ${statusColor} flex items-center space-x-1 border-0`}
-                            >
-                              <StatusIcon className="w-3 h-3" />
-                              <span className="capitalize">{project.status}</span>
-                            </Badge>
-                            <span className="text-foreground/60 text-sm">
-                              {project.year}
-                            </span>
+                          {/* Description */}
+                          <p className="text-foreground/85 mb-8 leading-relaxed flex-grow text-lg">
+                            {project.description}
+                          </p>
+                          
+                          {/* Tags */}
+                          <div className="flex flex-wrap gap-3 mb-8">
+                            {project.tags.map((tag, tagIndex) => (
+                              <AnimatedSection
+                                key={tag}
+                                animation="fade-in"
+                                delay={1.5 + index * 0.2 + tagIndex * 0.1}
+                              >
+                                <Badge 
+                                  variant="outline" 
+                                  className="text-sm border-accent/30 hover:border-accent hover:bg-accent/20 hover:text-foreground transition-all duration-300 cursor-default backdrop-blur-sm"
+                                >
+                                  {tag}
+                                </Badge>
+                              </AnimatedSection>
+                            ))}
+                          </div>
+                          
+                          {/* Action Buttons */}
+                          <div className="flex space-x-4 mt-auto">
+                            {project.links.live && (
+                              <Button 
+                                variant="outline" 
+                                size="lg"
+                                className="project-button group relative overflow-hidden border-accent/50 bg-background/50 hover:border-accent hover:bg-accent/20 hover:text-foreground transition-all duration-500 backdrop-blur-sm flex-1"
+                                onClick={() => window.open(project.links.live, '_blank')}
+                              >
+                                <div className="absolute inset-0 bg-gradient-to-r from-accent/10 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                                <ExternalLink className="w-5 h-5 mr-2 group-hover:rotate-12 group-hover:scale-110 transition-all duration-300 relative z-10" />
+                                <span className="relative z-10 font-medium">Visit Live</span>
+                              </Button>
+                            )}
+                            {portfolioConfig.features.showCodeButtons && project.links.github && (
+                              <Button 
+                                variant="outline" 
+                                size="lg"
+                                className="project-button group relative overflow-hidden border-accent/50 bg-background/50 hover:border-accent hover:bg-accent/20 hover:text-foreground transition-all duration-500 backdrop-blur-sm flex-1"
+                                onClick={() => window.open(project.links.github, '_blank')}
+                              >
+                                <div className="absolute inset-0 bg-gradient-to-r from-accent/10 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                                <Github className="w-5 h-5 mr-2 group-hover:rotate-12 group-hover:scale-110 transition-all duration-300 relative z-10" />
+                                <span className="relative z-10 font-medium">View Code</span>
+                              </Button>
+                            )}
                           </div>
                         </div>
                         
-                        <p className="text-foreground/80 mb-6 leading-relaxed flex-grow">
-                          {project.description}
-                        </p>
-                        
-                        <div className="flex flex-wrap gap-2 mb-6">
-                          {project.tags.map((tag, tagIndex) => (
-                            <AnimatedSection
-                              key={tag}
-                              animation="slide-in-right"
-                              delay={1.5 + index * 0.2 + tagIndex * 0.1}
-                            >
-                              <Badge 
-                                variant="outline" 
-                                className="text-xs border-accent/30 hover:border-accent/60 hover:bg-accent/10 transition-all duration-300"
-                              >
-                                {tag}
-                              </Badge>
-                            </AnimatedSection>
-                          ))}
-                        </div>
-                        
-                        <div className="flex space-x-3 mt-auto">
-                          {project.links.live && (
-                            <Button 
-                              variant="outline" 
-                              size="sm"
-                              className="premium-button group relative overflow-hidden border-accent/40 hover:border-accent/80 bg-gradient-to-r from-background/80 to-background/60 hover:from-accent/10 hover:to-secondary/5 transition-all duration-500"
-                              onClick={() => window.open(project.links.live, '_blank')}
-                            >
-                              <ExternalLink className="w-4 h-4 mr-2 group-hover:rotate-12 group-hover:scale-110 transition-all duration-300" />
-                              <span className="relative z-10">Visit Now</span>
-                            </Button>
-                          )}
-                          {portfolioConfig.features.showCodeButtons && project.links.github && (
-                            <Button 
-                              variant="outline" 
-                              size="sm"
-                              className="premium-button group relative overflow-hidden border-accent/40 hover:border-accent/80 bg-gradient-to-r from-background/80 to-background/60 hover:from-accent/10 hover:to-secondary/5 transition-all duration-500"
-                              onClick={() => window.open(project.links.github, '_blank')}
-                            >
-                              <Github className="w-4 h-4 mr-2 group-hover:rotate-12 group-hover:scale-110 transition-all duration-300" />
-                              <span className="relative z-10">Code</span>
-                            </Button>
-                          )}
-                        </div>
+                        {/* Decorative Elements */}
+                        <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-accent/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-bl-full" />
+                        <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-secondary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-tr-full" />
                       </div>
                     </AnimatedSection>
                   );

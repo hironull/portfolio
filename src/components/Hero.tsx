@@ -101,38 +101,42 @@ export const Hero = () => {
                 <Button 
                   variant="outline" 
                   size="lg" 
-                  className="hover-lift border-accent/30 hover:border-accent hover:bg-accent/10 transition-all duration-300 group"
+                  className="hero-button group relative overflow-hidden border-accent/50 bg-background/50 hover:border-accent hover:bg-accent/20 hover:text-foreground transition-all duration-500 backdrop-blur-sm"
                   onClick={() => window.open(social.github, '_blank')}
                 >
-                  <Github className="w-4 h-4 mr-2 group-hover:rotate-12 transition-transform duration-300" />
-                  GitHub
+                  <div className="absolute inset-0 bg-gradient-to-r from-accent/10 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <Github className="w-4 h-4 mr-2 group-hover:rotate-12 transition-transform duration-300 relative z-10" />
+                  <span className="relative z-10">GitHub</span>
                 </Button>
                 <Button 
                   variant="outline" 
                   size="lg" 
-                  className="hover-lift border-accent/30 hover:border-accent hover:bg-accent/10 transition-all duration-300 group"
+                  className="hero-button group relative overflow-hidden border-accent/50 bg-background/50 hover:border-accent hover:bg-accent/20 hover:text-foreground transition-all duration-500 backdrop-blur-sm"
                   onClick={() => scrollToSection('contact')}
                 >
-                  <FileText className="w-4 h-4 mr-2 group-hover:scale-110 transition-transform duration-300" />
-                  Contact
+                  <div className="absolute inset-0 bg-gradient-to-r from-accent/10 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <FileText className="w-4 h-4 mr-2 group-hover:scale-110 transition-transform duration-300 relative z-10" />
+                  <span className="relative z-10">Contact</span>
                 </Button>
                 <Button 
                   variant="outline" 
                   size="lg" 
-                  className="hover-lift border-accent/30 hover:border-accent hover:bg-accent/10 transition-all duration-300 group"
+                  className="hero-button group relative overflow-hidden border-accent/50 bg-background/50 hover:border-accent hover:bg-accent/20 hover:text-foreground transition-all duration-500 backdrop-blur-sm"
                   onClick={() => scrollToSection('projects')}
                 >
-                  <Download className="w-4 h-4 mr-2 group-hover:scale-110 transition-transform duration-300" />
-                  Projects
+                  <div className="absolute inset-0 bg-gradient-to-r from-accent/10 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <Download className="w-4 h-4 mr-2 group-hover:scale-110 transition-transform duration-300 relative z-10" />
+                  <span className="relative z-10">Projects</span>
                 </Button>
                 <Link to="/converter">
                   <Button 
                     variant="outline" 
                     size="lg" 
-                    className="hover-lift border-accent/30 hover:border-accent hover:bg-accent/10 transition-all duration-300 group"
+                    className="hero-button group relative overflow-hidden border-accent/50 bg-background/50 hover:border-accent hover:bg-accent/20 hover:text-foreground transition-all duration-500 backdrop-blur-sm"
                   >
-                    <Calculator className="w-4 h-4 mr-2 group-hover:scale-110 transition-transform duration-300" />
-                    Tools
+                    <div className="absolute inset-0 bg-gradient-to-r from-accent/10 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    <Calculator className="w-4 h-4 mr-2 group-hover:scale-110 transition-transform duration-300 relative z-10" />
+                    <span className="relative z-10">Tools</span>
                   </Button>
                 </Link>
               </div>
