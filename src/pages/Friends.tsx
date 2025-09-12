@@ -8,13 +8,13 @@ const Friends = () => {
   const friendsData = {
     "Best Friends": [
       {
-        name: "Sarah Chen",
-        title: "Frontend Developer",
-        skills: ["React", "Vue.js", "TypeScript"],
+        name: "Azuren",
+        title: "Discord server Desiger",
+        skills: ["Management", "Aesthetic", "Embeds"],
         status: "Available"
       },
       {
-        name: "Alex Rodriguez", 
+        name: "Zenpa", 
         title: "Full Stack Engineer",
         skills: ["Node.js", "Python", "AWS"],
         status: "Busy"
@@ -22,19 +22,19 @@ const Friends = () => {
     ],
     "Bros": [
       {
-        name: "Marcus Thompson",
-        title: "DevOps Engineer",
-        skills: ["Kubernetes", "Terraform", "Jenkins"],
+        name: "Nkash",
+        title: "Vps Specialist",
+        skills: ["Networking", "Kvm", "Docker"],
+        status: "Offline"
+      },
+      {
+        name: "Exo1tap ",
+        title: "Idk", 
+        skills: ["Java", "Minecraft", "Mods"],
         status: "Available"
       },
       {
-        name: "David Kim",
-        title: "Backend Developer", 
-        skills: ["Java", "Spring Boot", "PostgreSQL"],
-        status: "Available"
-      },
-      {
-        name: "Tom Wilson",
+        name: "",
         title: "Cybersecurity Specialist",
         skills: ["Penetration Testing", "Network Security"],
         status: "Busy"
@@ -42,27 +42,27 @@ const Friends = () => {
     ],
     "Special Persons": [
       {
-        name: "Emily Johnson",
-        title: "UI/UX Designer",
-        skills: ["Figma", "Design Systems", "Prototyping"],
-        status: "Available"
+        name: "Aegis",
+        title: "Bot And Backend Developer",
+        skills: ["Python", "Nodejs", "Mangodb"],
+        status: "Busy"
       },
       {
-        name: "Rachel Martinez",
-        title: "Data Scientist",
+        name: "Miorin",
+        title: "Hacker!!",
         skills: ["Python", "Machine Learning", "TensorFlow"],
-        status: "Available"
+        status: "Idle"
       }
     ],
     "Pookie": [
       {
-        name: "Lisa Wang",
-        title: "Mobile Developer",
-        skills: ["React Native", "Flutter", "iOS"],
+        name: "ZenpaiZombie",
+        title: "Hosting Specialist",
+        skills: ["Proxmox", "Kvm", "Docker"],
         status: "Busy"
       },
       {
-        name: "Jessica Brown",
+        name: "J",
         title: "Product Manager",
         skills: ["Product Strategy", "Agile", "User Research"],
         status: "Available"
