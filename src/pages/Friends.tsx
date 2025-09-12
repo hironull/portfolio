@@ -14,9 +14,9 @@ const Friends = () => {
         status: "Available"
       },
       {
-        name: "Zenpa", 
-        title: "Full Stack Engineer",
-        skills: ["Node.js", "Python", "AWS"],
+        name: "ZenpaiZombie", 
+        title: "",
+        skills: ["Photoshop", "Pixelab", "Pinterest"],
         status: "Busy"
       }
     ],
@@ -34,9 +34,9 @@ const Friends = () => {
         status: "Available"
       },
       {
-        name: "",
-        title: "Cybersecurity Specialist",
-        skills: ["Penetration Testing", "Network Security"],
+        name: "Spicy mango",
+        title: "Minecraft server developer",
+        skills: ["Java", "Papermc"],
         status: "Busy"
       }
     ],
@@ -54,15 +54,15 @@ const Friends = () => {
         status: "Idle"
       }
     ],
-    "Pookie": [
+    "Friends": [
       {
-        name: "ZenpaiZombie",
-        title: "Hosting Specialist",
+        name: "A",
+        title: "Graphic Desiger",
         skills: ["Proxmox", "Kvm", "Docker"],
         status: "Busy"
       },
       {
-        name: "J",
+        name: "",
         title: "Product Manager",
         skills: ["Product Strategy", "Agile", "User Research"],
         status: "Available"
