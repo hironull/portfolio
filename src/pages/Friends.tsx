@@ -15,8 +15,8 @@ const Friends = () => {
       },
       {
         name: "ZenpaiZombie", 
-        title: "",
-        skills: ["Photoshop", "Pixelab", "Pinterest"],
+        title: "Founder @ StrelixCloud",
+        skills: ["Proxmox", "Kvm", "Vitrualiozation"],
         status: "Busy"
       }
     ],
@@ -51,21 +51,21 @@ const Friends = () => {
         name: "Miorin",
         title: "Hacker!!",
         skills: ["Python", "Machine Learning", "TensorFlow"],
-        status: "Idle"
+        status: "Available"
       }
     ],
     "Friends": [
       {
-        name: "A",
+        name: "Alya",
         title: "Graphic Desiger",
         skills: ["Proxmox", "Kvm", "Docker"],
         status: "Busy"
       },
       {
-        name: "",
-        title: "Product Manager",
-        skills: ["Product Strategy", "Agile", "User Research"],
-        status: "Available"
+        name: "Leo",
+        title: "Discord Bot developer",
+        skills: ["Nodejs", "JavaScript", "Python"],
+        status: "Idle"
       }
     ]
   };
