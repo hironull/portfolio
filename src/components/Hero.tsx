@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from "react";
 import { TerminalWindow } from "./TerminalWindow";
 import { AnimatedSection } from "./AnimatedSection";
 import { Button } from "./ui/button";
-import { Github, Mail, FileText, Download, Calculator } from "lucide-react";
+import { Github, Mail, FileText, Download, Calculator, Users } from "lucide-react";
 import { portfolioConfig } from "../config/portfolio.config";
 import pixelAvatar from "../assets/pixel-avatar.png";
 import { Link } from "react-router-dom";
@@ -162,6 +162,17 @@ export const Hero = () => {
                   <Download className="w-4 h-4 mr-2 group-hover:scale-110 transition-transform duration-300 relative z-10" />
                   <span className="relative z-10">Projects</span>
                 </Button>
+                <Link to="/friends">
+                  <Button 
+                    variant="outline" 
+                    size="lg" 
+                    className="hero-button group relative overflow-hidden border-accent/50 bg-background/50 hover:border-accent hover:bg-accent/20 hover:text-foreground transition-all duration-500 backdrop-blur-sm"
+                  >
+                    <div className="absolute inset-0 bg-gradient-to-r from-accent/10 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    <Users className="w-4 h-4 mr-2 group-hover:scale-110 transition-transform duration-300 relative z-10" />
+                    <span className="relative z-10">Friends</span>
+                  </Button>
+                </Link>
                 <Link to="/converter">
                   <Button 
                     variant="outline" 
