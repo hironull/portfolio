@@ -16,30 +16,30 @@
     --terminal-bg: 0 0% 0%;
     --terminal-border: 0 0% 20%;
     --terminal-window: 0 0% 2%;
-    --terminal-accent: 284 31% 65%;
+    --terminal-accent: 240 67% 80%;
     
     --card: 0 0% 0%;
     --card-foreground: 0 0% 100%;
     --card-border: 0 0% 15%;
-    --card-hover: 0 0% 3%;
+    --card-hover: 240 67% 15%;
 
     --primary: 0 0% 0%;
     --primary-foreground: 0 0% 100%;
     --primary-glow: 0 0% 10%;
 
-    --secondary: 285 62% 84%;
+    --secondary: 240 67% 80%;
     --secondary-foreground: 0 0% 0%;
-    --secondary-hover: 285 65% 88%;
+    --secondary-hover: 240 70% 85%;
 
     --muted: 0 0% 15%;
     --muted-foreground: 0 0% 60%;
 
-    --accent: 285 62% 84%;
+    --accent: 240 67% 80%;
     --accent-foreground: 0 0% 0%;
-    --accent-glow: 285 65% 88%;
+    --accent-glow: 240 70% 85%;
 
     --border: 0 0% 15%;
-    --border-hover: 285 62% 84%;
+    --border-hover: 240 67% 80%;
     --input: 0 0% 5%;
     --ring: 285 62% 84%;
 
