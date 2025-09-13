@@ -45,7 +45,7 @@ export const Contact = () => {
                       variant="outline" 
                       size="sm"
                       className="terminal-hover font-mono stagger-1 transition-all duration-300 hover:scale-105 hover:shadow-lg"
-                      onClick={() => window.open(social.email, '_blank')}
+                      onClick={() => window.location.href = '/contact-email'}
                     >
                       <Mail className="w-4 h-4 mr-2" />
                       Email
