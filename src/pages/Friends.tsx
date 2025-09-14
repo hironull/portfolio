@@ -117,17 +117,26 @@ const Friends = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Compact Header */}
-      <header className="border-b border-border/50 py-4">
+      {/* Header with Description */}
+      <header className="border-b border-border/50 py-6">
         <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between mb-4">
             <div>
-              <h1 className="text-2xl font-bold text-foreground">My Network</h1>
-              <p className="text-sm text-foreground/70">Professional connections & friends</p>
+              <h1 className="text-3xl font-bold text-foreground">My Network</h1>
+              <p className="text-foreground/70 mt-1">Professional connections & amazing friends</p>
             </div>
             <Link to="/">
               <Button variant="outline" size="sm">← Back</Button>
             </Link>
+          </div>
+          
+          {/* Network Description */}
+          <div className="max-w-3xl">
+            <p className="text-foreground/80 leading-relaxed">
+              Welcome to my professional network! These are the incredible individuals I've had the privilege to work, 
+              collaborate, and build friendships with. From talented developers and designers to innovative entrepreneurs 
+              and creative minds - each person here has contributed something valuable to my journey in tech.
+            </p>
           </div>
         </div>
       </header>

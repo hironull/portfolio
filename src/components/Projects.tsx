@@ -40,7 +40,7 @@ export const Projects = () => {
                 </div>
               </AnimatedSection>
               
-              <div className="grid lg:grid-cols-2 gap-8">
+              <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 lg:gap-8">
                 {projects.map((project, index) => {
                   const StatusIcon = statusIcons[project.status as keyof typeof statusIcons];
                   const statusColor = statusColors[project.status as keyof typeof statusColors];
@@ -56,42 +56,42 @@ export const Projects = () => {
                         <div className="absolute inset-0 bg-gradient-to-br from-accent/5 via-transparent to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                         
                         {/* Content */}
-                        <div className="relative z-10 p-8 flex flex-col h-full">
+                        <div className="relative z-10 p-4 sm:p-6 lg:p-8 flex flex-col h-full">
                           {/* Header */}
-                          <div className="flex justify-between items-start mb-6">
-                            <div className="flex items-center space-x-3">
-                              <h3 className="text-2xl font-bold text-foreground group-hover:text-accent transition-colors duration-300">
+                          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4 mb-4 sm:mb-6">
+                            <div className="flex items-center flex-wrap gap-2 sm:gap-3">
+                              <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-foreground group-hover:text-accent transition-colors duration-300 break-words">
                                 {project.name}
                               </h3>
                               {project.featured && (
                                 <div className="relative">
-                                  <Badge className="bg-gradient-to-r from-accent/20 to-secondary/20 text-accent border-accent/30 animate-pulse">
+                                  <Badge className="bg-gradient-to-r from-accent/20 to-secondary/20 text-accent border-accent/30 animate-pulse text-xs">
                                     ⭐ Featured
                                   </Badge>
                                 </div>
                               )}
                             </div>
                             
-                            <div className="flex items-center space-x-3">
+                            <div className="flex items-center gap-2 sm:gap-3 flex-wrap sm:flex-nowrap">
                               <Badge 
-                                className={`${statusColor} flex items-center space-x-1 border-0 shadow-lg`}
+                                className={`${statusColor} flex items-center space-x-1 border-0 shadow-lg text-xs shrink-0`}
                               >
                                 <StatusIcon className="w-3 h-3" />
-                                <span className="capitalize text-xs font-medium">{project.status}</span>
+                                <span className="capitalize font-medium">{project.status}</span>
                               </Badge>
-                              <div className="text-foreground/60 text-sm font-medium bg-muted/20 px-2 py-1 rounded-full">
+                              <div className="text-foreground/60 text-xs sm:text-sm font-medium bg-muted/20 px-2 py-1 rounded-full shrink-0">
                                 {project.year}
                               </div>
                             </div>
                           </div>
                           
                           {/* Description */}
-                          <p className="text-foreground/85 mb-8 leading-relaxed flex-grow text-lg">
+                          <p className="text-foreground/85 mb-6 sm:mb-8 leading-relaxed flex-grow text-sm sm:text-base lg:text-lg">
                             {project.description}
                           </p>
                           
                           {/* Tags */}
-                          <div className="flex flex-wrap gap-3 mb-8">
+                          <div className="flex flex-wrap gap-2 sm:gap-3 mb-6 sm:mb-8">
                             {project.tags.map((tag, tagIndex) => (
                               <AnimatedSection
                                 key={tag}
@@ -100,7 +100,7 @@ export const Projects = () => {
                               >
                                 <Badge 
                                   variant="outline" 
-                                  className="text-sm border-accent/30 hover:border-accent hover:bg-accent/20 hover:text-foreground transition-all duration-300 cursor-default backdrop-blur-sm"
+                                  className="text-xs sm:text-sm border-accent/30 hover:border-accent hover:bg-accent/20 hover:text-foreground transition-all duration-300 cursor-default backdrop-blur-sm"
                                 >
                                   {tag}
                                 </Badge>
@@ -109,28 +109,28 @@ export const Projects = () => {
                           </div>
                           
                           {/* Action Buttons */}
-                          <div className="flex space-x-4 mt-auto">
+                          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mt-auto">
                             {project.links.live && (
                               <Button 
                                 variant="outline" 
-                                size="lg"
-                                className="project-button group relative overflow-hidden border-accent/50 bg-background/50 hover:border-accent hover:bg-accent/20 hover:text-foreground transition-all duration-500 backdrop-blur-sm flex-1"
+                                size="default"
+                                className="project-button group/btn relative overflow-hidden border-accent/50 bg-background/50 hover:border-accent hover:bg-accent/20 hover:text-foreground transition-all duration-500 backdrop-blur-sm flex-1 text-sm"
                                 onClick={() => window.open(project.links.live, '_blank')}
                               >
-                                <div className="absolute inset-0 bg-gradient-to-r from-accent/10 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                                <ExternalLink className="w-5 h-5 mr-2 group-hover:rotate-12 group-hover:scale-110 transition-all duration-300 relative z-10" />
+                                <div className="absolute inset-0 bg-gradient-to-r from-accent/10 to-secondary/5 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-500" />
+                                <ExternalLink className="w-4 h-4 mr-2 group-hover/btn:rotate-12 group-hover/btn:scale-110 transition-all duration-300 relative z-10" />
                                 <span className="relative z-10 font-medium">Visit Live</span>
                               </Button>
                             )}
                             {portfolioConfig.features.showCodeButtons && project.links.github && (
                               <Button 
                                 variant="outline" 
-                                size="lg"
-                                className="project-button group relative overflow-hidden border-accent/50 bg-background/50 hover:border-accent hover:bg-accent/20 hover:text-foreground transition-all duration-500 backdrop-blur-sm flex-1"
+                                size="default"
+                                className="project-button group/btn relative overflow-hidden border-accent/50 bg-background/50 hover:border-accent hover:bg-accent/20 hover:text-foreground transition-all duration-500 backdrop-blur-sm flex-1 text-sm"
                                 onClick={() => window.open(project.links.github, '_blank')}
                               >
-                                <div className="absolute inset-0 bg-gradient-to-r from-accent/10 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                                <Github className="w-5 h-5 mr-2 group-hover:rotate-12 group-hover:scale-110 transition-all duration-300 relative z-10" />
+                                <div className="absolute inset-0 bg-gradient-to-r from-accent/10 to-secondary/5 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-500" />
+                                <Github className="w-4 h-4 mr-2 group-hover/btn:rotate-12 group-hover/btn:scale-110 transition-all duration-300 relative z-10" />
                                 <span className="relative z-10 font-medium">View Code</span>
                               </Button>
                             )}
@@ -138,8 +138,8 @@ export const Projects = () => {
                         </div>
                         
                         {/* Decorative Elements */}
-                        <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-accent/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-bl-full" />
-                        <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-secondary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-tr-full" />
+                        <div className="absolute top-0 right-0 w-20 sm:w-32 h-20 sm:h-32 bg-gradient-to-bl from-accent/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-bl-full" />
+                        <div className="absolute bottom-0 left-0 w-16 sm:w-24 h-16 sm:h-24 bg-gradient-to-tr from-secondary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-tr-full" />
                       </div>
                     </AnimatedSection>
                   );
