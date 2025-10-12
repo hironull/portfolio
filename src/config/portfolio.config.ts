@@ -82,15 +82,15 @@ export const portfolioConfig = {
       }
     },
     {
-      name: "Addiee",
+      name: "Anirox",
       year: "2025",
-      description: "Advanced Discord bot with modern features for server management and community engagement.",
+      description: "A sleek anime streaming website with subbed & dubbed episodes, episode tracking, and completely free access with no sign-up required.",
       tags: ["React", "TypeScript", "Node.js"],
-      status: "coming soon",
-      featured: false,
+      status: "beta",
+      featured: true,
       links: {
         github: "https://github.com/hiro/adios",
-        live: "https://discord.gg/strelix"
+        live: "https://anime.hironull.lol/"
       }
     },
     {
