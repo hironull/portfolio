@@ -86,7 +86,7 @@ export const portfolioConfig = {
       year: "2025",
       description: "A sleek anime streaming website with subbed & dubbed episodes, episode tracking, and completely free access with no sign-up required.",
       tags: ["React", "TypeScript", "Node.js"],
-      status: "beta",
+      status: "production",
       featured: true,
       links: {
         github: "https://github.com/hiro/adios",
