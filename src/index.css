@@ -207,8 +207,9 @@
   }
 
   @keyframes blink {
-    0%, 50% { opacity: 1; }
-    51%, 100% { opacity: 0; }
+    0%, 40% { opacity: 1; }
+    50% { opacity: 0.3; }
+    60%, 100% { opacity: 1; }
   }
 
   @keyframes scan-line {
@@ -509,14 +510,17 @@
   /* Enhanced Glass morphism effects */
   .glass-card {
     background: linear-gradient(135deg,
-      rgba(255, 255, 255, 0.03),
-      rgba(255, 255, 255, 0.01)
+      rgba(255, 255, 255, 0.05),
+      rgba(255, 255, 255, 0.02)
     );
-    backdrop-filter: blur(12px);
+    backdrop-filter: blur(16px) saturate(180%);
     border: 1px solid hsl(var(--border) / 0.3);
-    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
     overflow: hidden;
+    box-shadow: 
+      0 8px 32px hsl(var(--background) / 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
   }
 
   .glass-card::before {
@@ -524,12 +528,12 @@
     position: absolute;
     inset: 0;
     background: linear-gradient(125deg,
-      hsl(var(--accent) / 0.08) 0%,
+      hsl(var(--accent) / 0.12) 0%,
       transparent 50%,
-      hsl(var(--secondary) / 0.06) 100%
+      hsl(var(--secondary) / 0.10) 100%
     );
     opacity: 0;
-    transition: opacity 0.5s ease;
+    transition: opacity 0.6s ease;
     pointer-events: none;
   }
 
@@ -539,11 +543,16 @@
 
   .glass-card:hover {
     background: linear-gradient(135deg,
-      rgba(255, 255, 255, 0.08),
-      rgba(255, 255, 255, 0.04)
+      rgba(255, 255, 255, 0.10),
+      rgba(255, 255, 255, 0.05)
     );
-    border-color: hsl(var(--accent) / 0.4);
-    backdrop-filter: blur(20px);
+    border-color: hsl(var(--accent) / 0.5);
+    backdrop-filter: blur(24px) saturate(200%);
+    transform: translateY(-2px);
+    box-shadow: 
+      0 12px 40px hsl(var(--accent) / 0.15),
+      0 8px 32px hsl(var(--background) / 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
   }
 
   /* Enhanced Hover lift effect */

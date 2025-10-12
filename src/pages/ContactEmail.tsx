@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 import { AnimatedSection } from "@/components/AnimatedSection";
 
 const ContactEmail = () => {
+  const [isLoaded, setIsLoaded] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -16,6 +17,10 @@ const ContactEmail = () => {
     topic: '',
     message: ''
   });
+
+  useEffect(() => {
+    setIsLoaded(true);
+  }, []);
 
   const topics = [
     { value: 'collaboration', label: 'Collaboration & Projects' },
@@ -45,9 +50,9 @@ ${formData.email}`;
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className={`min-h-screen bg-background transition-opacity duration-700 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
       {/* Header */}
-      <header className="border-b border-border/50 py-4">
+      <header className="border-b border-border/50 py-4 backdrop-blur-lg bg-background/80">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between">
             <div>
@@ -65,10 +70,10 @@ ${formData.email}`;
       </header>
 
       {/* Contact Form */}
-      <main className="container mx-auto px-4 py-6 sm:py-8">
+      <main className="container mx-auto px-4 py-6 sm:py-8 md:py-12">
         <div className="max-w-2xl mx-auto">
           <AnimatedSection animation="slide-in-up">
-            <Card className="shadow-lg border-border/50 hover:shadow-xl hover:border-accent/30 transition-all duration-300">
+            <Card className="shadow-2xl border-border/50 hover:shadow-accent/20 hover:border-accent/50 transition-all duration-500 backdrop-blur-xl bg-background/95">
               <CardHeader className="text-center pb-6">
                 <div className="w-16 h-16 bg-gradient-to-br from-primary/10 to-accent/10 rounded-full flex items-center justify-center mx-auto mb-4 hover:scale-110 transition-transform duration-300">
                   <Mail className="w-8 h-8 text-primary" />

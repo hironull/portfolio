@@ -7,7 +7,6 @@ import { PageTransition } from "./components/PageTransition";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import Converter from "./pages/Converter";
-import Friends from "./pages/Friends";
 import ContactEmail from "./pages/ContactEmail";
 
 const queryClient = new QueryClient();
@@ -22,7 +21,6 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/converter" element={<Converter />} />
-            <Route path="/friends" element={<Friends />} />
             <Route path="/contact-email" element={<ContactEmail />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />

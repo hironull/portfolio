@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from "react";
 import { TerminalWindow } from "./TerminalWindow";
 import { AnimatedSection } from "./AnimatedSection";
 import { Button } from "./ui/button";
-import { Github, Mail, FileText, Download, Calculator, Users } from "lucide-react";
+import { Github, Mail, FileText, Download, Calculator } from "lucide-react";
 import { portfolioConfig } from "../config/portfolio.config";
 import pixelAvatar from "../assets/pixel-avatar.png";
 import { Link } from "react-router-dom";
@@ -13,16 +13,25 @@ export const Hero = () => {
   
   useEffect(() => {
     let i = 0;
-    const timer = setInterval(() => {
+    let charTimeout: NodeJS.Timeout;
+    
+    const typeNextChar = () => {
       if (i < personal.tagline.length) {
         setDisplayText(personal.tagline.slice(0, i + 1));
         i++;
-      } else {
-        clearInterval(timer);
+        // Variable speed for more natural typing
+        const delay = Math.random() * 30 + theme.animations.typingSpeed;
+        charTimeout = setTimeout(typeNextChar, delay);
       }
-    }, theme.animations.typingSpeed);
+    };
     
-    return () => clearInterval(timer);
+    // Start typing after a brief delay
+    const startDelay = setTimeout(typeNextChar, 300);
+    
+    return () => {
+      clearTimeout(startDelay);
+      clearTimeout(charTimeout);
+    };
   }, [personal.tagline, theme.animations.typingSpeed]);
 
   const scrollToSection = useCallback((sectionId: string) => {
@@ -103,12 +112,12 @@ export const Hero = () => {
               </h2>
             </AnimatedSection>
             
-            {/* Optimized Typing Animation */}
+            {/* Enhanced Typing Animation */}
             <AnimatedSection delay={2} className="min-h-[120px] flex items-center justify-center">
-              <div className="max-w-3xl mx-auto glass-card p-6 rounded-xl">
-                <p className="text-foreground/90 leading-relaxed text-lg font-light">
+              <div className="max-w-3xl mx-auto glass-card p-6 rounded-xl border border-accent/20 hover:border-accent/40 transition-all duration-500">
+                <p className="text-foreground/90 leading-relaxed text-lg font-light tracking-wide">
                   {displayText}
-                  <span className="cursor inline-block w-0.5 h-6 bg-primary ml-1 animate-pulse">|</span>
+                  <span className="cursor inline-block w-0.5 h-6 bg-gradient-to-b from-accent to-secondary ml-1 animate-pulse shadow-lg shadow-accent/50">|</span>
                 </p>
               </div>
             </AnimatedSection>
@@ -162,17 +171,6 @@ export const Hero = () => {
                   <Download className="w-4 h-4 mr-2 group-hover:scale-110 transition-transform duration-300 relative z-10" />
                   <span className="relative z-10">Projects</span>
                 </Button>
-                <Link to="/friends">
-                  <Button 
-                    variant="outline" 
-                    size="lg" 
-                    className="hero-button group relative overflow-hidden border-accent/50 bg-background/50 hover:border-accent hover:bg-accent/20 hover:text-foreground transition-all duration-500 backdrop-blur-sm"
-                  >
-                    <div className="absolute inset-0 bg-gradient-to-r from-accent/10 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                    <Users className="w-4 h-4 mr-2 group-hover:scale-110 transition-transform duration-300 relative z-10" />
-                    <span className="relative z-10">Friends</span>
-                  </Button>
-                </Link>
                 <Link to="/converter">
                   <Button 
                     variant="outline" 
