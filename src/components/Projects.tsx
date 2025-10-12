@@ -4,6 +4,9 @@ import { Badge } from "./ui/badge";
 import { ExternalLink, Github, Clock, Star } from "lucide-react";
 import { Button } from "./ui/button";
 import { portfolioConfig } from "../config/portfolio.config";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "./ui/carousel";
+import Autoplay from "embla-carousel-autoplay";
+import { useRef } from "react";
 
 const statusIcons = {
   production: Star,
@@ -21,10 +24,13 @@ const statusColors = {
 
 export const Projects = () => {
   const { projects } = portfolioConfig;
+  const autoplayPlugin = useRef(
+    Autoplay({ delay: 4000, stopOnInteraction: true, stopOnMouseEnter: true })
+  );
   
   return (
     <section id="projects" className="py-20 px-4 scroll-section">
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-7xl mx-auto">
         <AnimatedSection animation="slide-in-up">
           <TerminalWindow title="projects.portfolio" className="backdrop-blur-md bg-background/95 border border-primary/20 shadow-2xl">
             <div className="space-y-12">
@@ -40,17 +46,21 @@ export const Projects = () => {
                 </div>
               </AnimatedSection>
               
-              <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 lg:gap-8">
+              <Carousel
+                opts={{
+                  align: "start",
+                  loop: true,
+                }}
+                plugins={[autoplayPlugin.current]}
+                className="w-full"
+              >
+                <CarouselContent className="-ml-4">
                 {projects.map((project, index) => {
                   const StatusIcon = statusIcons[project.status as keyof typeof statusIcons];
                   const statusColor = statusColors[project.status as keyof typeof statusColors];
                   
                   return (
-                    <AnimatedSection
-                      key={project.name}
-                      animation="slide-in-up"
-                      delay={1 + index * 0.2}
-                    >
+                    <CarouselItem key={project.name} className="pl-4 md:basis-1/2 lg:basis-1/2">
                       <div className="project-card group relative h-full flex flex-col overflow-hidden rounded-2xl border border-accent/20 bg-gradient-to-br from-background/95 to-background/80 backdrop-blur-md transition-all duration-500 hover:border-accent/40 hover:shadow-2xl hover:shadow-accent/10 hover:-translate-y-2">
                         {/* Hover Glow Effect */}
                         <div className="absolute inset-0 bg-gradient-to-br from-accent/5 via-transparent to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -141,10 +151,13 @@ export const Projects = () => {
                         <div className="absolute top-0 right-0 w-20 sm:w-32 h-20 sm:h-32 bg-gradient-to-bl from-accent/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-bl-full" />
                         <div className="absolute bottom-0 left-0 w-16 sm:w-24 h-16 sm:h-24 bg-gradient-to-tr from-secondary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-tr-full" />
                       </div>
-                    </AnimatedSection>
+                    </CarouselItem>
                   );
                 })}
-              </div>
+                </CarouselContent>
+                <CarouselPrevious className="left-4 md:left-8" />
+                <CarouselNext className="right-4 md:right-8" />
+              </Carousel>
             </div>
           </TerminalWindow>
         </AnimatedSection>
