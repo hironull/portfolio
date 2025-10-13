@@ -73,12 +73,12 @@ ${formData.email}`;
       <main className="container mx-auto px-4 py-6 sm:py-8 md:py-12">
         <div className="max-w-2xl mx-auto">
           <AnimatedSection animation="slide-in-up">
-            <Card className="shadow-2xl border-border/50 hover:shadow-accent/20 hover:border-accent/50 transition-all duration-500 backdrop-blur-xl bg-background/95">
+            <Card className="border-border/50 backdrop-blur-xl bg-background/95">
               <CardHeader className="text-center pb-6">
-                <div className="w-16 h-16 bg-gradient-to-br from-primary/10 to-accent/10 rounded-full flex items-center justify-center mx-auto mb-4 hover:scale-110 transition-transform duration-300">
-                  <Mail className="w-8 h-8 text-primary" />
+                <div className="w-14 h-14 bg-accent/5 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Mail className="w-7 h-7 text-accent" />
                 </div>
-                <CardTitle className="text-2xl sm:text-3xl bg-gradient-to-r from-foreground to-accent bg-clip-text text-transparent">
+                <CardTitle className="text-2xl sm:text-3xl text-foreground">
                   Contact Me
                 </CardTitle>
                 <CardDescription className="text-base sm:text-lg mt-2">
@@ -98,7 +98,7 @@ ${formData.email}`;
                         value={formData.name}
                         onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
                         placeholder="Your full name"
-                        className="focus:ring-2 focus:ring-accent/20 focus:border-accent transition-all duration-200 hover:border-accent/50"
+                        className="focus:border-accent transition-all duration-200"
                       />
                     </div>
                     
@@ -112,7 +112,7 @@ ${formData.email}`;
                         value={formData.email}
                         onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
                         placeholder="your.email@example.com"
-                        className="focus:ring-2 focus:ring-accent/20 focus:border-accent transition-all duration-200 hover:border-accent/50"
+                        className="focus:border-accent transition-all duration-200"
                       />
                     </div>
                   </div>
@@ -126,12 +126,12 @@ ${formData.email}`;
                       value={formData.topic}
                       onValueChange={(value) => setFormData(prev => ({ ...prev, topic: value }))}
                     >
-                      <SelectTrigger className="focus:ring-2 focus:ring-accent/20 focus:border-accent transition-all duration-200 hover:border-accent/50">
+                      <SelectTrigger className="focus:border-accent transition-all duration-200">
                         <SelectValue placeholder="Select a topic" />
                       </SelectTrigger>
                       <SelectContent>
                         {topics.map((topic) => (
-                          <SelectItem key={topic.value} value={topic.value} className="hover:bg-accent/10">
+                          <SelectItem key={topic.value} value={topic.value}>
                             {topic.label}
                           </SelectItem>
                         ))}
@@ -148,7 +148,7 @@ ${formData.email}`;
                       value={formData.subject}
                       onChange={(e) => setFormData(prev => ({ ...prev, subject: e.target.value }))}
                       placeholder="Brief description of your inquiry"
-                      className="focus:ring-2 focus:ring-accent/20 focus:border-accent transition-all duration-200 hover:border-accent/50"
+                      className="focus:border-accent transition-all duration-200"
                     />
                   </div>
 
@@ -162,16 +162,16 @@ ${formData.email}`;
                       onChange={(e) => setFormData(prev => ({ ...prev, message: e.target.value }))}
                       placeholder="Tell me more about your project, idea, or inquiry..."
                       rows={5}
-                      className="focus:ring-2 focus:ring-accent/20 focus:border-accent transition-all duration-200 resize-none hover:border-accent/50"
+                      className="focus:border-accent transition-all duration-200 resize-none"
                     />
                   </div>
 
                   <Button 
                     type="submit" 
-                    className="w-full hover:scale-105 transition-all duration-200 bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 shadow-lg hover:shadow-xl"
+                    className="w-full transition-all duration-200 bg-accent hover:bg-accent/90"
                     size="lg"
                   >
-                    <Send className="w-4 h-4 mr-2 group-hover:translate-x-1 transition-transform" />
+                    <Send className="w-4 h-4 mr-2" />
                     Send Message
                   </Button>
                 </form>

@@ -133,17 +133,17 @@ export const MusicPlayer = () => {
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 w-80">
-      <div className="glass-card p-4 rounded-xl border border-border/50 backdrop-blur-xl bg-background/95 shadow-2xl">
+    <div className="fixed bottom-6 right-6 z-[100] w-80">
+      <div className="glass-card p-4 rounded-xl border border-border/50 backdrop-blur-xl bg-background/95 shadow-lg">
         {/* Wave Visualizer */}
-        <div className="mb-4 h-20 flex items-end justify-center gap-1 rounded-lg bg-background/30 p-2">
+        <div className="mb-4 h-16 flex items-end justify-center gap-0.5 rounded-lg bg-background/30 p-2">
           {audioData.map((value, index) => (
             <div
               key={index}
-              className="flex-1 bg-gradient-to-t from-accent to-secondary rounded-t-sm transition-all duration-75 ease-out"
+              className="flex-1 bg-gradient-to-t from-accent via-accent/80 to-accent/60 rounded-t-sm transition-all duration-100 ease-linear"
               style={{
-                height: `${Math.max(isPlaying ? value * 100 : 5, 5)}%`,
-                opacity: isPlaying ? 0.8 + value * 0.2 : 0.4,
+                height: `${Math.max(isPlaying ? value * 100 : 3, 3)}%`,
+                opacity: isPlaying ? 0.7 + value * 0.3 : 0.3,
               }}
             />
           ))}
@@ -156,7 +156,7 @@ export const MusicPlayer = () => {
               variant="outline"
               size="icon"
               onClick={togglePlay}
-              className="h-10 w-10 rounded-full border-accent/50 hover:border-accent hover:bg-accent/10"
+              className="h-9 w-9 rounded-full border-accent/30 hover:border-accent hover:bg-accent/10 transition-all duration-300"
             >
               {isPlaying ? (
                 <Pause className="h-4 w-4" />
@@ -186,12 +186,12 @@ export const MusicPlayer = () => {
               variant="ghost"
               size="icon"
               onClick={toggleMute}
-              className="h-8 w-8 hover:bg-accent/10"
+              className="h-7 w-7 hover:bg-accent/10 transition-all duration-300"
             >
               {isMuted || volume === 0 ? (
-                <VolumeX className="h-4 w-4" />
+                <VolumeX className="h-3.5 w-3.5" />
               ) : (
-                <Volume2 className="h-4 w-4" />
+                <Volume2 className="h-3.5 w-3.5" />
               )}
             </Button>
             <Slider
@@ -209,7 +209,8 @@ export const MusicPlayer = () => {
           ref={audioRef}
           src="/music.mp3"
           loop
-          preload="metadata"
+          preload="auto"
+          crossOrigin="anonymous"
         />
       </div>
     </div>

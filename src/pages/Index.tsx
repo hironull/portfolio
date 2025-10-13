@@ -6,6 +6,7 @@ import { Contact } from "../components/Contact";
 import { ScrollProgress } from "../components/ScrollProgress";
 import { ParticleField } from "../components/ParticleField";
 import { MusicPlayer } from "../components/MusicPlayer";
+import { StatsCarousel } from "../components/StatsCarousel";
 import { portfolioConfig } from "../config/portfolio.config";
 import { useState, useEffect } from "react";
 
@@ -32,6 +33,7 @@ const Index = () => {
       {/* Main Content */}
       <main className="relative z-10">
         <Hero />
+        <StatsCarousel />
         <About />
         <Skills />
         <Projects />
