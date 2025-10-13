@@ -3,6 +3,7 @@ import { AnimatedSection } from "./AnimatedSection";
 import { Mail, Github, MessageCircle } from "lucide-react";
 import { Button } from "./ui/button";
 import { portfolioConfig } from "../config/portfolio.config";
+import { Link } from "react-router-dom";
 
 export const Contact = () => {
   const { content, social, personal } = portfolioConfig;
@@ -41,15 +42,16 @@ export const Contact = () => {
                 
                 <AnimatedSection animation="slide-in-up" delay={6}>
                   <div className="flex justify-center space-x-4 pt-4">
-                    <Button 
-                      variant="outline" 
-                      size="sm"
-                      className="terminal-hover font-mono stagger-1 transition-all duration-300 hover:scale-105 hover:shadow-lg"
-                      onClick={() => window.location.href = '/contact-email'}
-                    >
-                      <Mail className="w-4 h-4 mr-2" />
-                      Email
-                    </Button>
+                    <Link to="/contact-email">
+                      <Button 
+                        variant="outline" 
+                        size="sm"
+                        className="terminal-hover font-mono stagger-1 transition-all duration-300 hover:scale-105 hover:shadow-lg"
+                      >
+                        <Mail className="w-4 h-4 mr-2" />
+                        Email
+                      </Button>
+                    </Link>
                     <Button 
                       variant="outline" 
                       size="sm"

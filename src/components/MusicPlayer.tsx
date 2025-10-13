@@ -17,19 +17,27 @@ export const MusicPlayer = () => {
   const audioContextRef = useRef<AudioContext>();
 
   useEffect(() => {
-    // Initialize audio context and analyser
-    if (audioRef.current && !audioContextRef.current) {
-      const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
-      const analyser = audioContext.createAnalyser();
-      const source = audioContext.createMediaElementSource(audioRef.current);
-      
-      analyser.fftSize = 128;
-      source.connect(analyser);
-      analyser.connect(audioContext.destination);
-      
-      audioContextRef.current = audioContext;
-      analyserRef.current = analyser;
-    }
+    const initAudio = () => {
+      if (audioRef.current && !audioContextRef.current) {
+        try {
+          const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
+          const analyser = audioContext.createAnalyser();
+          const source = audioContext.createMediaElementSource(audioRef.current);
+          
+          analyser.fftSize = 128;
+          source.connect(analyser);
+          analyser.connect(audioContext.destination);
+          
+          audioContextRef.current = audioContext;
+          analyserRef.current = analyser;
+        } catch (error) {
+          console.error('Failed to initialize audio:', error);
+        }
+      }
+    };
+
+    // Try to initialize on mount
+    initAudio();
 
     return () => {
       if (animationRef.current) {
@@ -77,20 +85,38 @@ export const MusicPlayer = () => {
   const togglePlay = async () => {
     if (!audioRef.current) return;
 
-    if (audioContextRef.current?.state === 'suspended') {
-      await audioContextRef.current.resume();
-    }
-
-    if (isPlaying) {
-      audioRef.current.pause();
-      if (animationRef.current) {
-        cancelAnimationFrame(animationRef.current);
+    try {
+      // Initialize audio context on first interaction if needed
+      if (!audioContextRef.current && audioRef.current) {
+        const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
+        const analyser = audioContext.createAnalyser();
+        const source = audioContext.createMediaElementSource(audioRef.current);
+        
+        analyser.fftSize = 128;
+        source.connect(analyser);
+        analyser.connect(audioContext.destination);
+        
+        audioContextRef.current = audioContext;
+        analyserRef.current = analyser;
       }
-    } else {
-      await audioRef.current.play();
-      visualize();
+
+      if (audioContextRef.current?.state === 'suspended') {
+        await audioContextRef.current.resume();
+      }
+
+      if (isPlaying) {
+        audioRef.current.pause();
+        if (animationRef.current) {
+          cancelAnimationFrame(animationRef.current);
+        }
+      } else {
+        await audioRef.current.play();
+        visualize();
+      }
+      setIsPlaying(!isPlaying);
+    } catch (error) {
+      console.error('Error playing audio:', error);
     }
-    setIsPlaying(!isPlaying);
   };
 
   const handleSeek = (value: number[]) => {

@@ -132,10 +132,21 @@ export const Hero = () => {
             
             {/* Contact Info */}
             <AnimatedSection animation="slide-in-up" delay={3}>
-              <div className="flex items-center justify-center space-x-3 glass-card p-3 rounded-lg hover:bg-primary/5 transition-all duration-300">
-                <Mail className="w-4 h-4 text-primary" />
+              <button
+                onClick={() => {
+                  navigator.clipboard.writeText(personal.email);
+                  const btn = document.activeElement as HTMLElement;
+                  const originalContent = btn.innerHTML;
+                  btn.innerHTML = '<div class="flex items-center space-x-2"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span>Email copied!</span></div>';
+                  setTimeout(() => {
+                    btn.innerHTML = originalContent;
+                  }, 2000);
+                }}
+                className="flex items-center justify-center space-x-3 glass-card p-3 rounded-lg hover:bg-primary/5 transition-all duration-300 cursor-pointer group"
+              >
+                <Mail className="w-4 h-4 text-primary group-hover:scale-110 transition-transform" />
                 <span className="text-foreground/90">{personal.email}</span>
-              </div>
+              </button>
             </AnimatedSection>
             
             {/* Action Buttons */}

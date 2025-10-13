@@ -4,7 +4,8 @@ import { AnimatedSection } from "../components/AnimatedSection";
 import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
 import { Label } from "../components/ui/label";
-import { ArrowLeft, Calculator, ArrowRight } from "lucide-react";
+import { Textarea } from "../components/ui/textarea";
+import { ArrowLeft, Calculator, ArrowRight, MapPin, Network, KeyRound, Copy, Check } from "lucide-react";
 import { Link } from "react-router-dom";
 
 type ConversionType = {
@@ -22,10 +23,32 @@ const conversions: { [key: string]: ConversionType } = {
   "GB to KB": { from: "GB", to: "KB", decimalRate: 1000000, binaryRate: 1024*1024, title: "Gigabytes to Kilobytes Converter" }
 };
 
+type Tool = 'converter' | 'ip-geo' | 'dns' | 'password';
+
 const Converter = () => {
+  const [activeTool, setActiveTool] = useState<Tool>('converter');
   const [inputValue, setInputValue] = useState<string>("512");
   const [result, setResult] = useState<{ decimal: number; binary: number } | null>(null);
   const [currentConversion, setCurrentConversion] = useState<string>("GB to MB");
+  
+  // IP Geolocation states
+  const [ipAddress, setIpAddress] = useState<string>("");
+  const [geoResult, setGeoResult] = useState<any>(null);
+  const [geoLoading, setGeoLoading] = useState(false);
+  
+  // DNS states
+  const [dnsQuery, setDnsQuery] = useState<string>("");
+  const [dnsResult, setDnsResult] = useState<any>(null);
+  const [dnsLoading, setDnsLoading] = useState(false);
+  
+  // Password generator states
+  const [password, setPassword] = useState<string>("");
+  const [passwordLength, setPasswordLength] = useState<number>(16);
+  const [includeUppercase, setIncludeUppercase] = useState(true);
+  const [includeLowercase, setIncludeLowercase] = useState(true);
+  const [includeNumbers, setIncludeNumbers] = useState(true);
+  const [includeSymbols, setIncludeSymbols] = useState(true);
+  const [copied, setCopied] = useState(false);
 
   const convert = () => {
     const input = parseFloat(inputValue);
@@ -63,6 +86,58 @@ const Converter = () => {
     setResult({ decimal: decimalResult, binary: binaryResult });
   };
 
+  // IP Geolocation function
+  const lookupIP = async () => {
+    if (!ipAddress) return;
+    setGeoLoading(true);
+    try {
+      const response = await fetch(`https://ipapi.co/${ipAddress}/json/`);
+      const data = await response.json();
+      setGeoResult(data);
+    } catch (error) {
+      setGeoResult({ error: 'Failed to lookup IP address' });
+    }
+    setGeoLoading(false);
+  };
+
+  // DNS lookup function
+  const lookupDNS = async () => {
+    if (!dnsQuery) return;
+    setDnsLoading(true);
+    try {
+      const response = await fetch(`https://dns.google/resolve?name=${dnsQuery}`);
+      const data = await response.json();
+      setDnsResult(data);
+    } catch (error) {
+      setDnsResult({ error: 'Failed to lookup DNS' });
+    }
+    setDnsLoading(false);
+  };
+
+  // Password generator function
+  const generatePassword = () => {
+    let charset = '';
+    if (includeUppercase) charset += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    if (includeLowercase) charset += 'abcdefghijklmnopqrstuvwxyz';
+    if (includeNumbers) charset += '0123456789';
+    if (includeSymbols) charset += '!@#$%^&*()_+-=[]{}|;:,.<>?';
+    
+    if (charset === '') return;
+    
+    let newPassword = '';
+    for (let i = 0; i < passwordLength; i++) {
+      newPassword += charset.charAt(Math.floor(Math.random() * charset.length));
+    }
+    setPassword(newPassword);
+    setCopied(false);
+  };
+
+  const copyPassword = () => {
+    navigator.clipboard.writeText(password);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
   return (
     <div className="min-h-screen bg-background relative">
       {/* Background blur effects */}
@@ -85,7 +160,7 @@ const Converter = () => {
         {/* Main Content */}
         <div className="max-w-4xl mx-auto px-4 py-8">
           <AnimatedSection animation="slide-in-up">
-            <TerminalWindow title="Converter.exe" className="w-full backdrop-blur-sm bg-terminal-bg/95 border-2 border-accent/30">
+            <TerminalWindow title="Tools.exe" className="w-full backdrop-blur-sm bg-terminal-bg/95 border-2 border-accent/30">
               <div className="space-y-8">
                 {/* Header */}
                 <AnimatedSection delay={1}>
@@ -93,94 +168,378 @@ const Converter = () => {
                     <div className="flex items-center justify-center space-x-3">
                       <Calculator className="w-8 h-8 text-accent" />
                       <h1 className="text-3xl font-bold font-code text-foreground">
-                        {conversions[currentConversion].title}
+                        Developer Tools
                       </h1>
                     </div>
                     <div className="w-24 h-1 bg-accent mx-auto rounded-full shadow-lg shadow-accent/50" />
                   </div>
                 </AnimatedSection>
 
-                {/* Converter Form */}
-                <AnimatedSection delay={2}>
-                  <div className="max-w-md mx-auto space-y-6">
-                    <div className="space-y-2">
-                      <Label htmlFor="input-value" className="text-foreground font-mono">
-                        {conversions[currentConversion].from}
-                      </Label>
-                        <Input
-                          id="input-value"
-                          type="number"
-                          min="0"
-                          step="any"
-                          value={inputValue}
-                          onChange={(e) => handleInputChange(e.target.value)}
-                          placeholder={`Enter ${conversions[currentConversion].from} value`}
-                          className="bg-terminal-window/50 border-accent/30 text-foreground font-mono text-lg text-center focus:border-accent focus:ring-2 focus:ring-accent/20"
-                        />
-                    </div>
-
-                    <div className="flex justify-center">
-                      <Button
-                        onClick={convert}
-                        className="bg-accent hover:bg-accent/80 text-white font-mono px-8 py-2"
-                      >
-                        Convert
-                      </Button>
-                    </div>
+                {/* Tool Selection */}
+                <AnimatedSection delay={1.5}>
+                  <div className="flex flex-wrap justify-center gap-2">
+                    <Button
+                      variant={activeTool === 'converter' ? 'default' : 'outline'}
+                      size="sm"
+                      className={`font-mono transition-all duration-200 ${
+                        activeTool === 'converter'
+                          ? 'bg-accent hover:bg-accent/80 text-white'
+                          : 'hover:bg-accent/20 hover:border-accent/60'
+                      }`}
+                      onClick={() => setActiveTool('converter')}
+                    >
+                      <Calculator className="w-4 h-4 mr-2" />
+                      Storage Converter
+                    </Button>
+                    <Button
+                      variant={activeTool === 'ip-geo' ? 'default' : 'outline'}
+                      size="sm"
+                      className={`font-mono transition-all duration-200 ${
+                        activeTool === 'ip-geo'
+                          ? 'bg-accent hover:bg-accent/80 text-white'
+                          : 'hover:bg-accent/20 hover:border-accent/60'
+                      }`}
+                      onClick={() => setActiveTool('ip-geo')}
+                    >
+                      <MapPin className="w-4 h-4 mr-2" />
+                      IP Geolocation
+                    </Button>
+                    <Button
+                      variant={activeTool === 'dns' ? 'default' : 'outline'}
+                      size="sm"
+                      className={`font-mono transition-all duration-200 ${
+                        activeTool === 'dns'
+                          ? 'bg-accent hover:bg-accent/80 text-white'
+                          : 'hover:bg-accent/20 hover:border-accent/60'
+                      }`}
+                      onClick={() => setActiveTool('dns')}
+                    >
+                      <Network className="w-4 h-4 mr-2" />
+                      DNS Lookup
+                    </Button>
+                    <Button
+                      variant={activeTool === 'password' ? 'default' : 'outline'}
+                      size="sm"
+                      className={`font-mono transition-all duration-200 ${
+                        activeTool === 'password'
+                          ? 'bg-accent hover:bg-accent/80 text-white'
+                          : 'hover:bg-accent/20 hover:border-accent/60'
+                      }`}
+                      onClick={() => setActiveTool('password')}
+                    >
+                      <KeyRound className="w-4 h-4 mr-2" />
+                      Password Generator
+                    </Button>
                   </div>
                 </AnimatedSection>
 
-                {/* Result Display */}
-                {result && (
-                  <AnimatedSection animation="fade-in" delay={3}>
-                    <div className="space-y-4">
-                      <div className="flex items-center justify-center space-x-2 text-accent font-mono">
-                        <span>{conversions[currentConversion].from}</span>
-                        <ArrowRight className="w-4 h-4" />
-                        <span>{conversions[currentConversion].to}</span>
-                      </div>
-                      
-                      <div className="bg-terminal-window/30 backdrop-blur-sm p-6 rounded-xl border border-accent/20 space-y-3">
-                        <div className="text-foreground font-mono">
-                          <span className="text-accent font-bold">{parseFloat(inputValue).toLocaleString()} {conversions[currentConversion].from}</span>
-                          <span className="text-muted-foreground"> = </span>
-                          <span className="text-accent font-bold">{result.decimal.toLocaleString(undefined, { maximumFractionDigits: 6 })} {conversions[currentConversion].to}</span>
-                          <span className="text-muted-foreground"> (decimal)</span>
-                        </div>
-                        <div className="text-foreground font-mono">
-                          <span className="text-accent font-bold">{parseFloat(inputValue).toLocaleString()} {conversions[currentConversion].from}</span>
-                          <span className="text-muted-foreground"> = </span>
-                          <span className="text-accent font-bold">{result.binary.toLocaleString(undefined, { maximumFractionDigits: 6 })} {conversions[currentConversion].to}</span>
-                          <span className="text-muted-foreground"> (binary)</span>
+                {/* Storage Converter Tool */}
+                {activeTool === 'converter' && (
+                  <>
+                    <AnimatedSection delay={2}>
+                      <div className="max-w-md mx-auto space-y-6">
+                        <div className="space-y-2">
+                          <Label htmlFor="input-value" className="text-foreground font-mono">
+                            {conversions[currentConversion].from}
+                          </Label>
+                          <Input
+                            id="input-value"
+                            type="number"
+                            min="0"
+                            step="any"
+                            value={inputValue}
+                            onChange={(e) => handleInputChange(e.target.value)}
+                            placeholder={`Enter ${conversions[currentConversion].from} value`}
+                            className="bg-terminal-window/50 border-accent/30 text-foreground font-mono text-lg text-center focus:border-accent focus:ring-2 focus:ring-accent/20"
+                          />
                         </div>
                       </div>
-                    </div>
-                  </AnimatedSection>
+                    </AnimatedSection>
+
+                    {result && (
+                      <AnimatedSection animation="fade-in" delay={3}>
+                        <div className="space-y-4">
+                          <div className="flex items-center justify-center space-x-2 text-accent font-mono">
+                            <span>{conversions[currentConversion].from}</span>
+                            <ArrowRight className="w-4 h-4" />
+                            <span>{conversions[currentConversion].to}</span>
+                          </div>
+                          
+                          <div className="bg-terminal-window/30 backdrop-blur-sm p-6 rounded-xl border border-accent/20 space-y-3">
+                            <div className="text-foreground font-mono">
+                              <span className="text-accent font-bold">{parseFloat(inputValue).toLocaleString()} {conversions[currentConversion].from}</span>
+                              <span className="text-muted-foreground"> = </span>
+                              <span className="text-accent font-bold">{result.decimal.toLocaleString(undefined, { maximumFractionDigits: 6 })} {conversions[currentConversion].to}</span>
+                              <span className="text-muted-foreground"> (decimal)</span>
+                            </div>
+                            <div className="text-foreground font-mono">
+                              <span className="text-accent font-bold">{parseFloat(inputValue).toLocaleString()} {conversions[currentConversion].from}</span>
+                              <span className="text-muted-foreground"> = </span>
+                              <span className="text-accent font-bold">{result.binary.toLocaleString(undefined, { maximumFractionDigits: 6 })} {conversions[currentConversion].to}</span>
+                              <span className="text-muted-foreground"> (binary)</span>
+                            </div>
+                          </div>
+                        </div>
+                      </AnimatedSection>
+                    )}
+
+                    <AnimatedSection delay={4}>
+                      <div className="text-center space-y-4">
+                        <h3 className="text-lg font-mono text-foreground">Quick Conversions</h3>
+                        <div className="flex flex-wrap justify-center gap-2">
+                          {Object.keys(conversions).map((conversionKey) => (
+                            <Button
+                              key={conversionKey}
+                              variant={currentConversion === conversionKey ? "default" : "outline"}
+                              size="sm"
+                              className={`font-mono text-xs transition-all duration-200 ${
+                                currentConversion === conversionKey 
+                                  ? "bg-accent hover:bg-accent/80 text-white" 
+                                  : "hover:bg-accent/20 hover:border-accent/60"
+                              }`}
+                              onClick={() => handleConversionChange(conversionKey)}
+                            >
+                              {conversionKey}
+                            </Button>
+                          ))}
+                        </div>
+                      </div>
+                    </AnimatedSection>
+                  </>
                 )}
 
-                {/* Quick Conversion Links */}
-                <AnimatedSection delay={4}>
-                  <div className="text-center space-y-4">
-                    <h3 className="text-lg font-mono text-foreground">Quick Conversions</h3>
-                    <div className="flex flex-wrap justify-center gap-2">
-                      {Object.keys(conversions).map((conversionKey) => (
+                {/* IP Geolocation Tool */}
+                {activeTool === 'ip-geo' && (
+                  <>
+                    <AnimatedSection delay={2}>
+                      <div className="max-w-md mx-auto space-y-6">
+                        <div className="space-y-2">
+                          <Label htmlFor="ip-input" className="text-foreground font-mono">
+                            IP Address
+                          </Label>
+                          <Input
+                            id="ip-input"
+                            type="text"
+                            value={ipAddress}
+                            onChange={(e) => setIpAddress(e.target.value)}
+                            placeholder="Enter IP address (e.g., 8.8.8.8)"
+                            className="bg-terminal-window/50 border-accent/30 text-foreground font-mono text-center focus:border-accent focus:ring-2 focus:ring-accent/20"
+                          />
+                        </div>
                         <Button
-                          key={conversionKey}
-                          variant={currentConversion === conversionKey ? "default" : "outline"}
-                          size="sm"
-                          className={`font-mono text-xs transition-all duration-200 ${
-                            currentConversion === conversionKey 
-                              ? "bg-accent hover:bg-accent/80 text-white" 
-                              : "hover:bg-accent/20 hover:border-accent/60"
-                          }`}
-                          onClick={() => handleConversionChange(conversionKey)}
+                          onClick={lookupIP}
+                          disabled={geoLoading}
+                          className="w-full bg-accent hover:bg-accent/80 text-white font-mono"
                         >
-                          {conversionKey}
+                          {geoLoading ? 'Looking up...' : 'Lookup IP'}
                         </Button>
-                      ))}
-                    </div>
-                  </div>
-                </AnimatedSection>
+                      </div>
+                    </AnimatedSection>
+
+                    {geoResult && (
+                      <AnimatedSection animation="fade-in" delay={3}>
+                        <div className="bg-terminal-window/30 backdrop-blur-sm p-6 rounded-xl border border-accent/20 space-y-2">
+                          {geoResult.error ? (
+                            <p className="text-red-500 font-mono">{geoResult.error}</p>
+                          ) : (
+                            <div className="space-y-2 font-mono text-sm">
+                              <div className="flex justify-between">
+                                <span className="text-muted-foreground">IP:</span>
+                                <span className="text-accent">{geoResult.ip}</span>
+                              </div>
+                              <div className="flex justify-between">
+                                <span className="text-muted-foreground">City:</span>
+                                <span className="text-foreground">{geoResult.city}</span>
+                              </div>
+                              <div className="flex justify-between">
+                                <span className="text-muted-foreground">Region:</span>
+                                <span className="text-foreground">{geoResult.region}</span>
+                              </div>
+                              <div className="flex justify-between">
+                                <span className="text-muted-foreground">Country:</span>
+                                <span className="text-foreground">{geoResult.country_name}</span>
+                              </div>
+                              <div className="flex justify-between">
+                                <span className="text-muted-foreground">Timezone:</span>
+                                <span className="text-foreground">{geoResult.timezone}</span>
+                              </div>
+                              <div className="flex justify-between">
+                                <span className="text-muted-foreground">ISP:</span>
+                                <span className="text-foreground">{geoResult.org}</span>
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      </AnimatedSection>
+                    )}
+                  </>
+                )}
+
+                {/* DNS Lookup Tool */}
+                {activeTool === 'dns' && (
+                  <>
+                    <AnimatedSection delay={2}>
+                      <div className="max-w-md mx-auto space-y-6">
+                        <div className="space-y-2">
+                          <Label htmlFor="dns-input" className="text-foreground font-mono">
+                            Domain Name
+                          </Label>
+                          <Input
+                            id="dns-input"
+                            type="text"
+                            value={dnsQuery}
+                            onChange={(e) => setDnsQuery(e.target.value)}
+                            placeholder="Enter domain (e.g., google.com)"
+                            className="bg-terminal-window/50 border-accent/30 text-foreground font-mono text-center focus:border-accent focus:ring-2 focus:ring-accent/20"
+                          />
+                        </div>
+                        <Button
+                          onClick={lookupDNS}
+                          disabled={dnsLoading}
+                          className="w-full bg-accent hover:bg-accent/80 text-white font-mono"
+                        >
+                          {dnsLoading ? 'Looking up...' : 'Lookup DNS'}
+                        </Button>
+                      </div>
+                    </AnimatedSection>
+
+                    {dnsResult && (
+                      <AnimatedSection animation="fade-in" delay={3}>
+                        <div className="bg-terminal-window/30 backdrop-blur-sm p-6 rounded-xl border border-accent/20 space-y-4">
+                          {dnsResult.error ? (
+                            <p className="text-red-500 font-mono">{dnsResult.error}</p>
+                          ) : (
+                            <div className="space-y-4 font-mono text-sm">
+                              <div>
+                                <h3 className="text-accent mb-2">DNS Records:</h3>
+                                {dnsResult.Answer && dnsResult.Answer.length > 0 ? (
+                                  <div className="space-y-2">
+                                    {dnsResult.Answer.map((record: any, index: number) => (
+                                      <div key={index} className="bg-terminal-window/20 p-3 rounded border border-accent/10">
+                                        <div className="flex justify-between mb-1">
+                                          <span className="text-muted-foreground">Type:</span>
+                                          <span className="text-accent">{record.type === 1 ? 'A' : record.type === 28 ? 'AAAA' : record.type}</span>
+                                        </div>
+                                        <div className="flex justify-between">
+                                          <span className="text-muted-foreground">Data:</span>
+                                          <span className="text-foreground break-all">{record.data}</span>
+                                        </div>
+                                      </div>
+                                    ))}
+                                  </div>
+                                ) : (
+                                  <p className="text-muted-foreground">No records found</p>
+                                )}
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      </AnimatedSection>
+                    )}
+                  </>
+                )}
+
+                {/* Password Generator Tool */}
+                {activeTool === 'password' && (
+                  <>
+                    <AnimatedSection delay={2}>
+                      <div className="max-w-md mx-auto space-y-6">
+                        <div className="space-y-4">
+                          <div className="space-y-2">
+                            <Label htmlFor="password-length" className="text-foreground font-mono">
+                              Password Length: {passwordLength}
+                            </Label>
+                            <Input
+                              id="password-length"
+                              type="range"
+                              min="8"
+                              max="32"
+                              value={passwordLength}
+                              onChange={(e) => setPasswordLength(parseInt(e.target.value))}
+                              className="w-full"
+                            />
+                          </div>
+
+                          <div className="space-y-2">
+                            <div className="flex items-center space-x-2">
+                              <input
+                                type="checkbox"
+                                id="uppercase"
+                                checked={includeUppercase}
+                                onChange={(e) => setIncludeUppercase(e.target.checked)}
+                                className="w-4 h-4"
+                              />
+                              <Label htmlFor="uppercase" className="text-foreground font-mono">
+                                Include Uppercase (A-Z)
+                              </Label>
+                            </div>
+                            <div className="flex items-center space-x-2">
+                              <input
+                                type="checkbox"
+                                id="lowercase"
+                                checked={includeLowercase}
+                                onChange={(e) => setIncludeLowercase(e.target.checked)}
+                                className="w-4 h-4"
+                              />
+                              <Label htmlFor="lowercase" className="text-foreground font-mono">
+                                Include Lowercase (a-z)
+                              </Label>
+                            </div>
+                            <div className="flex items-center space-x-2">
+                              <input
+                                type="checkbox"
+                                id="numbers"
+                                checked={includeNumbers}
+                                onChange={(e) => setIncludeNumbers(e.target.checked)}
+                                className="w-4 h-4"
+                              />
+                              <Label htmlFor="numbers" className="text-foreground font-mono">
+                                Include Numbers (0-9)
+                              </Label>
+                            </div>
+                            <div className="flex items-center space-x-2">
+                              <input
+                                type="checkbox"
+                                id="symbols"
+                                checked={includeSymbols}
+                                onChange={(e) => setIncludeSymbols(e.target.checked)}
+                                className="w-4 h-4"
+                              />
+                              <Label htmlFor="symbols" className="text-foreground font-mono">
+                                Include Symbols (!@#$...)
+                              </Label>
+                            </div>
+                          </div>
+                        </div>
+
+                        <Button
+                          onClick={generatePassword}
+                          className="w-full bg-accent hover:bg-accent/80 text-white font-mono"
+                        >
+                          Generate Password
+                        </Button>
+                      </div>
+                    </AnimatedSection>
+
+                    {password && (
+                      <AnimatedSection animation="fade-in" delay={3}>
+                        <div className="bg-terminal-window/30 backdrop-blur-sm p-6 rounded-xl border border-accent/20">
+                          <div className="flex items-center justify-between space-x-4">
+                            <code className="text-accent font-mono text-lg break-all">{password}</code>
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              onClick={copyPassword}
+                              className="shrink-0"
+                            >
+                              {copied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
+                            </Button>
+                          </div>
+                        </div>
+                      </AnimatedSection>
+                    )}
+                  </>
+                )}
               </div>
             </TerminalWindow>
           </AnimatedSection>

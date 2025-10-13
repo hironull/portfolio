@@ -93,23 +93,6 @@ export const Skills = () => {
                 })}
               </div>
 
-              {/* Additional skills summary */}
-              <AnimatedSection animation="slide-in-up" delay={5}>
-                <div className="text-center pt-8">
-                  <div className="bg-terminal-window/30 backdrop-blur-sm p-6 rounded-xl border border-accent/20">
-                    <p className="text-muted-foreground font-mono text-sm mb-4">
-                      Always learning, always growing
-                    </p>
-                    <div className="flex justify-center space-x-4 text-xs font-mono">
-                      <span className="text-accent">Years of Experience: 3+</span>
-                      <span className="text-muted-foreground">•</span>
-                      <span className="text-accent">Projects Completed: 35+</span>
-                      <span className="text-muted-foreground">•</span>
-                      <span className="text-accent">Technologies Mastered: 20+</span>
-                    </div>
-                  </div>
-                </div>
-              </AnimatedSection>
             </div>
           </TerminalWindow>
         </AnimatedSection>
