@@ -25,7 +25,7 @@ const conversions: { [key: string]: ConversionType } = {
 
 type Tool = 'converter' | 'ip-geo' | 'dns' | 'password' | 'subdomain' | 'smallcap';
 
-const Converter = () => {
+const Tools = () => {
   const [activeTool, setActiveTool] = useState<Tool>('converter');
   const [inputValue, setInputValue] = useState<string>("512");
   const [result, setResult] = useState<{ decimal: number; binary: number } | null>(null);
@@ -52,9 +52,10 @@ const Converter = () => {
   
   // Subdomain creator states
   const [subdomainName, setSubdomainName] = useState<string>("");
-  const [availableDomains] = useState<string[]>(["hironull.lol", "hiro.dev", "hiro.site"]);
+  const [availableDomains] = useState<string[]>(["hironull.lol", "hiro.dev", "hiro.site", "hiro.tech", "hiro.io"]);
   const [selectedDomain, setSelectedDomain] = useState<string>("hironull.lol");
   const [subdomainResult, setSubdomainResult] = useState<any>(null);
+  const [subdomainLoading, setSubdomainLoading] = useState(false);
   
   // Small cap generator states
   const [inputText, setInputText] = useState<string>("");
@@ -153,10 +154,43 @@ const Converter = () => {
   const createSubdomain = async () => {
     if (!subdomainName) return;
     
-    setSubdomainResult({
-      success: false,
-      message: "Subdomain creation requires Cloudflare API configuration. Please contact the administrator to set up your free subdomain."
-    });
+    setSubdomainLoading(true);
+    setSubdomainResult(null);
+    
+    try {
+      // Call the backend to create subdomain via Cloudflare API
+      const response = await fetch('YOUR_BACKEND_ENDPOINT', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          subdomain: subdomainName,
+          domain: selectedDomain,
+        }),
+      });
+      
+      const data = await response.json();
+      
+      if (response.ok) {
+        setSubdomainResult({
+          success: true,
+          message: `Subdomain ${subdomainName}.${selectedDomain} created successfully! It may take a few minutes to propagate.`,
+        });
+      } else {
+        setSubdomainResult({
+          success: false,
+          message: data.error || 'Failed to create subdomain. Please try again.',
+        });
+      }
+    } catch (error) {
+      setSubdomainResult({
+        success: false,
+        message: 'To use the subdomain creator, you need to set up Cloudflare API integration. Contact the administrator for setup.',
+      });
+    }
+    
+    setSubdomainLoading(false);
   };
 
   // Small cap generator function
@@ -666,9 +700,10 @@ const Converter = () => {
 
                         <Button
                           onClick={createSubdomain}
-                          className="w-full bg-accent hover:bg-accent/80 text-white font-mono"
+                          disabled={subdomainLoading || !subdomainName}
+                          className="w-full bg-accent hover:bg-accent/80 text-white font-mono disabled:opacity-50"
                         >
-                          Create Subdomain
+                          {subdomainLoading ? 'Creating...' : 'Create Subdomain'}
                         </Button>
                       </div>
                     </AnimatedSection>
@@ -755,4 +790,4 @@ const Converter = () => {
   );
 };
 
-export default Converter;
+export default Tools;

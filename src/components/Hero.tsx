@@ -184,7 +184,7 @@ export const Hero = () => {
                   <Download className="w-4 h-4 mr-2 group-hover:scale-110 transition-transform duration-300 relative z-10" />
                   <span className="relative z-10">Projects</span>
                 </Button>
-                <Link to="/converter">
+                <Link to="/tools">
                   <Button 
                     variant="outline" 
                     size="lg" 
