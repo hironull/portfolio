@@ -5,7 +5,6 @@ import { Projects } from "../components/Projects";
 import { Contact } from "../components/Contact";
 import { ScrollProgress } from "../components/ScrollProgress";
 import { ParticleField } from "../components/ParticleField";
-import { MusicPlayer } from "../components/MusicPlayer";
 import { StatsCarousel } from "../components/StatsCarousel";
 import { portfolioConfig } from "../config/portfolio.config";
 import { useState, useEffect } from "react";
@@ -26,9 +25,6 @@ const Index = () => {
       
       {/* Particle Background Effect */}
       {features.particles && <ParticleField />}
-      
-      {/* Music Player */}
-      <MusicPlayer />
       
       {/* Main Content */}
       <main className="relative z-10">
