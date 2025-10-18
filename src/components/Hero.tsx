@@ -46,38 +46,43 @@ export const Hero = () => {
 
   return (
     <section className="min-h-screen flex items-center justify-center p-4 relative overflow-hidden">
-      {/* Optimized background blur elements */}
+      {/* Enhanced background with shiny gradients */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 w-80 h-80 bg-primary/5 rounded-full blur-3xl animate-float" />
-        <div className="absolute top-3/4 right-1/4 w-64 h-64 bg-accent/8 rounded-full blur-2xl animate-float-delayed" />
-        <div className="absolute top-1/2 left-1/2 w-72 h-72 bg-primary/3 rounded-full blur-3xl animate-float-slow" />
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-primary/20 via-accent/20 to-secondary/20 rounded-full blur-3xl animate-float opacity-50" />
+        <div className="absolute top-3/4 right-1/4 w-80 h-80 bg-gradient-to-l from-accent/25 via-primary/15 to-secondary/20 rounded-full blur-2xl animate-float-delayed opacity-60" />
+        <div className="absolute top-1/2 left-1/2 w-72 h-72 bg-gradient-to-br from-primary/15 via-transparent to-accent/15 rounded-full blur-3xl animate-float-slow opacity-40" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/80 to-background" />
       </div>
 
       <AnimatedSection animation="slide-in-up" className="w-full relative z-10">
-        <TerminalWindow title="root@hiro:~#" className="w-full max-w-4xl mx-auto backdrop-blur-md bg-background/95 border border-primary/20 shadow-2xl">
-          <div className="text-center space-y-8">
-            {/* Sleek Avatar with Smooth Glow */}
+        <TerminalWindow title="root@hiro:~#" className="w-full max-w-4xl mx-auto backdrop-blur-md bg-background/95 border-2 border-primary/30 shadow-2xl shadow-primary/10 hover:shadow-primary/20 transition-all duration-500 group relative overflow-hidden">
+          {/* Shiny border effect */}
+          <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
+            <div className="absolute -inset-[2px] bg-gradient-to-r from-primary/30 via-accent/40 to-secondary/30 rounded-lg blur-sm animate-pulse" />
+          </div>
+          <div className="text-center space-y-8 relative z-10">
+            {/* Enhanced Avatar with Stunning Glow */}
             <AnimatedSection animation="slide-in-up" delay={1} className="flex justify-center">
               <div className="relative group">
-                {/* Outer Glow Layers */}
-                <div className="absolute -inset-6 bg-gradient-to-r from-accent/30 to-secondary/30 rounded-full blur-2xl opacity-60 animate-pulse" />
-                <div className="absolute -inset-4 bg-gradient-to-r from-accent/40 to-secondary/40 rounded-full blur-xl opacity-70 animate-pulse" style={{ animationDelay: '0.5s' }} />
-                <div className="absolute -inset-3 bg-gradient-to-r from-accent/50 to-secondary/50 rounded-full blur-lg opacity-80 group-hover:opacity-100 transition-all duration-700" />
+                {/* Enhanced Outer Glow Layers with shiny effect */}
+                <div className="absolute -inset-8 bg-gradient-to-r from-primary/40 via-accent/40 to-secondary/40 rounded-full blur-3xl opacity-70 animate-pulse" />
+                <div className="absolute -inset-6 bg-gradient-to-l from-accent/50 via-secondary/50 to-primary/50 rounded-full blur-2xl opacity-80 animate-pulse" style={{ animationDelay: '0.5s' }} />
+                <div className="absolute -inset-4 bg-gradient-to-br from-primary/60 via-accent/60 to-secondary/60 rounded-full blur-xl opacity-90 group-hover:opacity-100 transition-all duration-700" />
                 
-                {/* Rotating Ring */}
-                <div className="absolute -inset-2 rounded-full animate-spin" style={{ animationDuration: '8s' }}>
-                  <div className="w-full h-full rounded-full bg-gradient-to-r from-accent/60 via-transparent via-transparent to-secondary/60 blur-sm" />
+                {/* Enhanced Rotating Ring with shiny borders */}
+                <div className="absolute -inset-3 rounded-full animate-spin" style={{ animationDuration: '6s' }}>
+                  <div className="w-full h-full rounded-full bg-gradient-to-r from-primary/70 via-accent/80 via-transparent to-secondary/70 blur-sm" />
                 </div>
                 
-                {/* Inner Border Glow */}
-                <div className="absolute -inset-1 bg-gradient-to-r from-accent/60 to-secondary/60 rounded-full blur-md opacity-80 group-hover:opacity-100 transition-all duration-500" />
+                {/* Enhanced Inner Border Glow */}
+                <div className="absolute -inset-2 bg-gradient-to-br from-primary/70 via-accent/70 to-secondary/70 rounded-full blur-md opacity-90 group-hover:opacity-100 transition-all duration-500" />
                 
-                {/* Avatar Container */}
+                {/* Avatar Container with enhanced border */}
                 <div className="relative">
                   <img 
                     src={pixelAvatar} 
                     alt={`${personal.name}'s avatar`} 
-                    className="relative w-28 h-28 rounded-full border-2 border-accent/50 group-hover:border-accent/80 transition-all duration-700 transform group-hover:scale-105 pixel-art shadow-2xl shadow-accent/20"
+                    className="relative w-32 h-32 rounded-full border-[3px] border-accent/60 group-hover:border-accent shadow-[0_0_15px_rgba(var(--accent),0.5)] group-hover:shadow-[0_0_25px_rgba(var(--accent),0.8)] transition-all duration-700 transform group-hover:scale-110 pixel-art"
                   />
                   
                   {/* Inner Highlight */}
@@ -112,10 +117,11 @@ export const Hero = () => {
               </h2>
             </AnimatedSection>
             
-            {/* Enhanced Typing Animation */}
+            {/* Enhanced Typing Animation with shiny border */}
             <AnimatedSection delay={2} className="min-h-[120px] flex items-center justify-center">
-              <div className="max-w-3xl mx-auto glass-card p-6 rounded-xl border border-accent/20 hover:border-accent/40 transition-all duration-500">
-                <p className="text-foreground/90 leading-relaxed text-lg font-light tracking-wide">
+              <div className="max-w-3xl mx-auto glass-card p-6 rounded-xl border-2 border-accent/30 hover:border-accent/50 transition-all duration-500 group relative overflow-hidden">
+                <div className="absolute -inset-[2px] bg-gradient-to-r from-primary/20 via-accent/30 to-secondary/20 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm" />
+                <p className="text-foreground/90 leading-relaxed text-lg font-light tracking-wide relative z-10">
                   {displayText}
                   <span className="cursor inline-block w-0.5 h-6 bg-gradient-to-b from-accent to-secondary ml-1 animate-pulse shadow-lg shadow-accent/50">|</span>
                 </p>

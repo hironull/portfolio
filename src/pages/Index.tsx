@@ -8,6 +8,7 @@ import { ParticleField } from "../components/ParticleField";
 import { StatsCarousel } from "../components/StatsCarousel";
 import { portfolioConfig } from "../config/portfolio.config";
 import { useState, useEffect } from "react";
+import { supabase } from "@/integrations/supabase/client";
 
 const Index = () => {
   const { features } = portfolioConfig;
@@ -16,6 +17,17 @@ const Index = () => {
   useEffect(() => {
     // Smooth page entrance animation
     setIsLoaded(true);
+    
+    // Log visitor
+    const logVisitor = async () => {
+      try {
+        await supabase.functions.invoke('log-visitor');
+      } catch (error) {
+        console.error('Error logging visitor:', error);
+      }
+    };
+    
+    logVisitor();
   }, []);
   
   return (
