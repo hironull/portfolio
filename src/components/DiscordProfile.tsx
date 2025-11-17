@@ -16,7 +16,7 @@ export const DiscordProfile = () => {
       {/* Banner */}
       <div className="relative h-[300px] overflow-hidden">
         <img 
-          src={heroBackground}
+          src={personal.bannerUrl || heroBackground}
           alt="Profile banner"
           className="w-full h-full object-cover blur-sm scale-105"
         />
@@ -32,7 +32,7 @@ export const DiscordProfile = () => {
             <div className="relative">
               <div className="absolute -inset-1 bg-discord-blurple/20 rounded-full blur-md"></div>
               <img 
-                src={pixelAvatar}
+                src={personal.avatarUrl || pixelAvatar}
                 alt={personal.name}
                 className="relative w-32 h-32 rounded-full border-8 border-discord-dark bg-discord-darker pixel-art"
               />

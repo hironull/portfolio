@@ -43,13 +43,13 @@
     --input: 220 13% 23%;
     --ring: 235 86% 65%;
     
-    /* Discord specific colors */
-    --discord-dark: 220 13% 18%;
-    --discord-darker: 220 13% 15%;
-    --discord-card: 223 7% 20%;
-    --discord-hover: 220 13% 23%;
-    --discord-blurple: 235 86% 65%;
-    --discord-green: 139 47% 57%;
+    /* Discord specific colors - Lavender theme */
+    --discord-dark: 262 30% 11%;
+    --discord-darker: 262 30% 7%;
+    --discord-card: 262 30% 13%;
+    --discord-hover: 262 30% 17%;
+    --discord-blurple: 267 57% 78%;
+    --discord-green: 142 71% 45%;
     --discord-text: 210 11% 96%;
     --discord-muted: 220 9% 65%;
 
