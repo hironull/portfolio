@@ -62,6 +62,16 @@ export default {
 					border: 'hsl(var(--terminal-border))',
 					window: 'hsl(var(--terminal-window))',
 					accent: 'hsl(var(--terminal-accent))'
+				},
+				discord: {
+					dark: 'hsl(var(--discord-dark))',
+					darker: 'hsl(var(--discord-darker))',
+					card: 'hsl(var(--discord-card))',
+					hover: 'hsl(var(--discord-hover))',
+					blurple: 'hsl(var(--discord-blurple))',
+					green: 'hsl(var(--discord-green))',
+					text: 'hsl(var(--discord-text))',
+					muted: 'hsl(var(--discord-muted))'
 				}
 			},
 			borderRadius: {
