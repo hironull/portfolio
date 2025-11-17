@@ -7,7 +7,10 @@ export const portfolioConfig = {
     tagline: "Hello, I'm Hiro, a professional web developer specializing in modern digital solutions. I create reliable, scalable applications that help businesses grow and succeed online.",
     email: "me@hironull.lol",
     location: "N/A",
-    avatar: "/src/assets/pixel-avatar.png"
+    avatar: "/src/assets/pixel-avatar.png",
+    // Set these to your GIF URLs to use animated avatars/banners
+    avatarUrl: null, // e.g., "https://i.imgur.com/yourimage.gif" 
+    bannerUrl: null  // e.g., "https://i.imgur.com/yourbanner.gif"
   },
 
   // SEO & Meta
