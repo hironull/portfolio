@@ -43,12 +43,12 @@
     --input: 220 13% 23%;
     --ring: 235 86% 65%;
     
-    /* Discord specific colors - Lavender theme */
-    --discord-dark: 262 30% 11%;
-    --discord-darker: 262 30% 7%;
-    --discord-card: 262 30% 13%;
-    --discord-hover: 262 30% 17%;
-    --discord-blurple: 267 57% 78%;
+    /* Discord specific colors - Shiny Lavender theme */
+    --discord-dark: 262 35% 12%;
+    --discord-darker: 262 35% 8%;
+    --discord-card: 262 35% 14%;
+    --discord-hover: 262 35% 18%;
+    --discord-blurple: 267 65% 82%;
     --discord-green: 142 71% 45%;
     --discord-text: 210 11% 96%;
     --discord-muted: 220 9% 65%;
@@ -98,11 +98,7 @@
     font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
     line-height: 1.6;
     overflow-x: hidden;
-    background-image: url('/src/assets/hero-background.jpg');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    background-repeat: no-repeat;
+    background: linear-gradient(135deg, hsl(var(--discord-darker)), hsl(var(--discord-dark)));
   }
 
   /* Advanced Terminal Styling */
@@ -230,10 +226,46 @@
   @keyframes fade-in {
     from {
       opacity: 0;
+      transform: translateY(20px);
     }
     to {
       opacity: 1;
+      transform: translateY(0);
     }
+  }
+
+  @keyframes parallax-float {
+    0%, 100% { transform: translateY(0px) translateX(0px); }
+    25% { transform: translateY(-10px) translateX(5px); }
+    50% { transform: translateY(-20px) translateX(-5px); }
+    75% { transform: translateY(-10px) translateX(5px); }
+  }
+
+  @keyframes shimmer {
+    0% { background-position: -1000px 0; }
+    100% { background-position: 1000px 0; }
+  }
+
+  @keyframes glow-bloom {
+    0%, 100% { 
+      box-shadow: 0 0 10px hsl(var(--discord-blurple) / 0.3),
+                  0 0 20px hsl(var(--discord-blurple) / 0.2);
+    }
+    50% { 
+      box-shadow: 0 0 20px hsl(var(--discord-blurple) / 0.6),
+                  0 0 40px hsl(var(--discord-blurple) / 0.4),
+                  0 0 60px hsl(var(--discord-blurple) / 0.2);
+    }
+  }
+
+  @keyframes loader-spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  @keyframes loader-pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
   }
 
   @keyframes skill-load {
@@ -287,7 +319,30 @@
   }
 
   .fade-in {
-    animation: fade-in 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    animation: fade-in 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .parallax-float {
+    animation: parallax-float 8s ease-in-out infinite;
+  }
+
+  .shimmer {
+    background: linear-gradient(90deg, 
+      transparent 0%, 
+      hsl(var(--discord-blurple) / 0.1) 50%, 
+      transparent 100%
+    );
+    background-size: 1000px 100%;
+    animation: shimmer 3s infinite;
+  }
+
+  .glow-hover {
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .glow-hover:hover {
+    transform: translateY(-4px) scale(1.02);
+    animation: glow-bloom 2s ease-in-out infinite;
   }
 
   /* Stagger Animation Delays */
