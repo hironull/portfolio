@@ -13,18 +13,21 @@ export const PageTransition = ({ children }: PageTransitionProps) => {
     setIsTransitioning(true);
     const timer = setTimeout(() => {
       setIsTransitioning(false);
-    }, 400);
+    }, 600);
 
     return () => clearTimeout(timer);
   }, [location.pathname]);
 
   return (
     <div 
-      className={`transition-all duration-400 ease-in-out ${
+      className={`transition-all duration-600 ${
         isTransitioning 
-          ? 'opacity-0 scale-[0.98] translate-y-2' 
-          : 'opacity-100 scale-100 translate-y-0'
+          ? 'opacity-0 scale-[0.96] translate-y-8 blur-sm' 
+          : 'opacity-100 scale-100 translate-y-0 blur-0'
       }`}
+      style={{
+        transitionTimingFunction: 'cubic-bezier(0.16, 1, 0.3, 1)'
+      }}
     >
       {children}
     </div>
