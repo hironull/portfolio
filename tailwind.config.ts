@@ -19,8 +19,7 @@ export default {
 		},
 		extend: {
 			fontFamily: {
-				mono: ['JetBrains Mono', 'Fira Code', 'Courier New', 'monospace'],
-				code: ['Fira Code', 'JetBrains Mono', 'Courier New', 'monospace'],
+				sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
 			},
 			colors: {
 				border: 'hsl(var(--border))',
@@ -56,22 +55,6 @@ export default {
 					foreground: 'hsl(var(--card-foreground))',
 					border: 'hsl(var(--card-border))',
 					hover: 'hsl(var(--card-hover))'
-				},
-				terminal: {
-					bg: 'hsl(var(--terminal-bg))',
-					border: 'hsl(var(--terminal-border))',
-					window: 'hsl(var(--terminal-window))',
-					accent: 'hsl(var(--terminal-accent))'
-				},
-				discord: {
-					dark: 'hsl(var(--discord-dark))',
-					darker: 'hsl(var(--discord-darker))',
-					card: 'hsl(var(--discord-card))',
-					hover: 'hsl(var(--discord-hover))',
-					blurple: 'hsl(var(--discord-blurple))',
-					green: 'hsl(var(--discord-green))',
-					text: 'hsl(var(--discord-text))',
-					muted: 'hsl(var(--discord-muted))'
 				}
 			},
 			borderRadius: {
@@ -97,39 +80,19 @@ export default {
 					}
 				},
 				'fade-in': {
-					from: { opacity: '0' },
-					to: { opacity: '1' }
+					from: { opacity: '0', transform: 'translateY(30px)' },
+					to: { opacity: '1', transform: 'translateY(0)' }
 				},
-				'float-delayed': {
-					'0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
-					'50%': { transform: 'translateY(-20px) rotate(2deg)' }
-				},
-				'float-slow': {
-					'0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
-					'50%': { transform: 'translateY(-15px) rotate(-1deg)' }
-				},
-				'skill-load': {
-					from: { width: '0%' },
-					to: { width: '100%' }
+				'slide-in-up': {
+					from: { opacity: '0', transform: 'translateY(40px)' },
+					to: { opacity: '1', transform: 'translateY(0)' }
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
-				'matrix-rain': 'matrix-rain linear infinite',
-				'glow-pulse': 'glow-pulse 2s ease-in-out infinite',
-				'float': 'float 3s ease-in-out infinite',
-				'float-delayed': 'float-delayed 4s ease-in-out infinite 1s',
-				'float-slow': 'float-slow 5s ease-in-out infinite',
-				'slide-in-up': 'slide-in-up 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards',
-				'slide-in-left': 'slide-in-left 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards',
-				'slide-in-right': 'slide-in-right 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards',
-				'fade-in': 'fade-in 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards',
-				'typewriter': 'typewriter 2s steps(40, end)',
-				'blink': 'blink 1.2s infinite',
-				'scan-line': 'scan-line 2s infinite',
-				'skill-load': 'skill-load 2s ease-out forwards',
-				'skeleton-loading': 'skeleton-loading 1.5s ease-in-out infinite'
+				'fade-in': 'fade-in 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+				'slide-in-up': 'slide-in-up 1s cubic-bezier(0.16, 1, 0.3, 1) forwards'
 			}
 		}
 	},
