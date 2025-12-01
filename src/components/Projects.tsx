@@ -32,7 +32,7 @@ export const Projects = () => {
     <section id="projects" className="py-20 px-4 scroll-section">
       <div className="max-w-7xl mx-auto">
         <AnimatedSection animation="slide-in-up">
-          <TerminalWindow title="projects.portfolio" className="backdrop-blur-md bg-background/95 border border-primary/20 shadow-2xl">
+          <TerminalWindow title="projects.portfolio">
             <div className="space-y-12">
               <AnimatedSection delay={0.5}>
                 <div className="text-center space-y-4">
@@ -61,7 +61,7 @@ export const Projects = () => {
                   
                   return (
                     <CarouselItem key={project.name} className="pl-4 md:basis-1/2 lg:basis-1/2">
-                      <div className="project-card group relative h-full flex flex-col overflow-hidden rounded-2xl border border-accent/20 bg-gradient-to-br from-background/95 to-background/80 backdrop-blur-md transition-all duration-500 hover:border-accent/40 hover:shadow-2xl hover:shadow-accent/10 hover:-translate-y-2">
+                      <div className="project-card group relative h-full flex flex-col overflow-hidden rounded-2xl transition-all duration-500">
                         {/* Hover Glow Effect */}
                         <div className="absolute inset-0 bg-gradient-to-br from-accent/5 via-transparent to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                         
@@ -108,12 +108,12 @@ export const Projects = () => {
                                 animation="fade-in"
                                 delay={1.5 + index * 0.2 + tagIndex * 0.1}
                               >
-                                <Badge 
-                                  variant="outline" 
-                                  className="text-xs sm:text-sm border-accent/30 hover:border-accent hover:bg-accent/20 hover:text-foreground transition-all duration-300 cursor-default backdrop-blur-sm"
-                                >
-                                  {tag}
-                                </Badge>
+                              <Badge 
+                                variant="outline" 
+                                className="glass-card text-xs sm:text-sm transition-all duration-300 cursor-default"
+                              >
+                                {tag}
+                              </Badge>
                               </AnimatedSection>
                             ))}
                           </div>
@@ -124,10 +124,9 @@ export const Projects = () => {
                               <Button 
                                 variant="outline" 
                                 size="default"
-                                className="project-button group/btn relative overflow-hidden border-accent/50 bg-background/50 hover:border-accent hover:bg-accent/20 hover:text-foreground transition-all duration-500 backdrop-blur-sm flex-1 text-sm"
+                                className="glass-card group/btn relative overflow-hidden transition-all duration-500 flex-1 text-sm"
                                 onClick={() => window.open(project.links.live, '_blank')}
                               >
-                                <div className="absolute inset-0 bg-gradient-to-r from-accent/10 to-secondary/5 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-500" />
                                 <ExternalLink className="w-4 h-4 mr-2 group-hover/btn:rotate-12 group-hover/btn:scale-110 transition-all duration-300 relative z-10" />
                                 <span className="relative z-10 font-medium">Visit Live</span>
                               </Button>
@@ -136,10 +135,9 @@ export const Projects = () => {
                               <Button 
                                 variant="outline" 
                                 size="default"
-                                className="project-button group/btn relative overflow-hidden border-accent/50 bg-background/50 hover:border-accent hover:bg-accent/20 hover:text-foreground transition-all duration-500 backdrop-blur-sm flex-1 text-sm"
+                                className="glass-card group/btn relative overflow-hidden transition-all duration-500 flex-1 text-sm"
                                 onClick={() => window.open(project.links.github, '_blank')}
                               >
-                                <div className="absolute inset-0 bg-gradient-to-r from-accent/10 to-secondary/5 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-500" />
                                 <Github className="w-4 h-4 mr-2 group-hover/btn:rotate-12 group-hover/btn:scale-110 transition-all duration-300 relative z-10" />
                                 <span className="relative z-10 font-medium">View Code</span>
                               </Button>

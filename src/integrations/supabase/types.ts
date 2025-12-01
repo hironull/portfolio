@@ -38,27 +38,45 @@ export type Database = {
           country: string | null
           id: string
           ip_address: string
+          isp: string | null
+          latitude: number | null
+          longitude: number | null
           referrer: string | null
+          region: string | null
+          timezone: string | null
           user_agent: string | null
           visited_at: string
+          zip_code: string | null
         }
         Insert: {
           city?: string | null
           country?: string | null
           id?: string
           ip_address: string
+          isp?: string | null
+          latitude?: number | null
+          longitude?: number | null
           referrer?: string | null
+          region?: string | null
+          timezone?: string | null
           user_agent?: string | null
           visited_at?: string
+          zip_code?: string | null
         }
         Update: {
           city?: string | null
           country?: string | null
           id?: string
           ip_address?: string
+          isp?: string | null
+          latitude?: number | null
+          longitude?: number | null
           referrer?: string | null
+          region?: string | null
+          timezone?: string | null
           user_agent?: string | null
           visited_at?: string
+          zip_code?: string | null
         }
         Relationships: []
       }

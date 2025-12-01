@@ -103,8 +103,9 @@ const IPs = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-background via-background to-primary/5">
-        <div className="animate-pulse text-xl">Loading...</div>
+      <div className="min-h-screen flex items-center justify-center relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-background/95 via-background/90 to-background/95 backdrop-blur-xl" />
+        <div className="animate-pulse text-xl glass-card p-6 rounded-xl relative z-10">Loading...</div>
       </div>
     );
   }
@@ -114,14 +115,17 @@ const IPs = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-background to-primary/5 py-12 px-4">
-      <div className="container mx-auto max-w-7xl">
-        <div className="mb-8">
-          <h1 className="text-4xl font-bold bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent mb-2">
+    <div className="min-h-screen py-12 px-4 relative overflow-hidden">
+      {/* Glassmorphism background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-background/95 via-background/90 to-background/95 backdrop-blur-xl" />
+      
+      <div className="container mx-auto max-w-7xl relative z-10">
+        <div className="mb-8 glass-card p-6 rounded-xl">
+          <h1 className="text-4xl font-bold text-foreground mb-2">
             Visitor Analytics
           </h1>
-          <p className="text-muted-foreground">Track and monitor your website visitors</p>
-          <Badge variant="secondary" className="mt-2">
+          <p className="text-foreground/70">Track and monitor your website visitors</p>
+          <Badge className="mt-2 glass-card">
             Total Visits: {logs.length}
           </Badge>
         </div>
@@ -130,44 +134,39 @@ const IPs = () => {
           {logs.map((log) => (
             <Card 
               key={log.id} 
-              className="group hover:shadow-lg transition-all duration-300 border-2 hover:border-primary/20 relative overflow-hidden"
+              className="glass-card group transition-all duration-300"
             >
-              {/* Shiny border effect */}
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <div className="absolute -inset-[1px] bg-gradient-to-r from-primary/20 via-primary/40 to-primary/20 rounded-lg blur-sm" />
-              </div>
-              
-              <CardHeader className="relative">
+              <CardHeader>
                 <CardTitle className="flex items-center justify-between flex-wrap gap-2">
                   <div className="flex items-center gap-2">
-                    <Globe className="w-5 h-5 text-primary" />
-                    <span className="font-mono text-lg">{log.ip_address}</span>
+                    <Globe className="w-5 h-5 text-foreground" />
+                    <span className="font-mono text-lg text-foreground">{log.ip_address}</span>
                   </div>
-                  <Badge variant="outline" className="gap-1">
+                  <Badge variant="outline" className="gap-1 glass-card">
                     <Calendar className="w-3 h-3" />
                     {formatDate(log.visited_at)}
                   </Badge>
                 </CardTitle>
               </CardHeader>
               
-              <CardContent className="relative space-y-2">
+              <CardContent className="space-y-2">
                 <div className="flex items-center gap-2 text-sm">
-                  <Monitor className="w-4 h-4 text-muted-foreground" />
-                  <span className="text-muted-foreground">Browser:</span>
-                  <Badge variant="secondary">{getBrowserInfo(log.user_agent)}</Badge>
+                  <Monitor className="w-4 h-4 text-foreground/60" />
+                  <span className="text-foreground/60">Browser:</span>
+                  <Badge className="glass-card">{getBrowserInfo(log.user_agent)}</Badge>
                 </div>
                 
                 <div className="flex items-center gap-2 text-sm">
-                  <ExternalLink className="w-4 h-4 text-muted-foreground" />
-                  <span className="text-muted-foreground">Referrer:</span>
-                  <span className="truncate max-w-md">{log.referrer}</span>
+                  <ExternalLink className="w-4 h-4 text-foreground/60" />
+                  <span className="text-foreground/60">Referrer:</span>
+                  <span className="truncate max-w-md text-foreground/80">{log.referrer}</span>
                 </div>
 
                 {(log.country || log.city) && (
                   <div className="flex items-center gap-2 text-sm">
-                    <Globe className="w-4 h-4 text-muted-foreground" />
-                    <span className="text-muted-foreground">Location:</span>
-                    <Badge variant="outline">
+                    <Globe className="w-4 h-4 text-foreground/60" />
+                    <span className="text-foreground/60">Location:</span>
+                    <Badge variant="outline" className="glass-card">
                       {[log.city, log.country].filter(Boolean).join(', ')}
                     </Badge>
                   </div>
@@ -178,10 +177,10 @@ const IPs = () => {
         </div>
 
         {logs.length === 0 && (
-          <Card className="text-center py-12">
+          <Card className="glass-card text-center py-12">
             <CardContent>
-              <Globe className="w-16 h-16 mx-auto text-muted-foreground mb-4" />
-              <p className="text-xl text-muted-foreground">No visitor logs yet</p>
+              <Globe className="w-16 h-16 mx-auto text-foreground/40 mb-4" />
+              <p className="text-xl text-foreground/60">No visitor logs yet</p>
             </CardContent>
           </Card>
         )}
