@@ -34,7 +34,7 @@ export const Skills = () => {
       
       <div className="max-w-5xl mx-auto relative z-10">
         <AnimatedSection animation="slide-in-up">
-          <TerminalWindow title="Skills.exe" className="w-full backdrop-blur-sm bg-terminal-bg/95 border-2 border-accent/30">
+          <TerminalWindow title="Skills.exe" className="w-full">
             <div className="space-y-10">
               <AnimatedSection delay={2}>
                 <div className="text-center space-y-4">
@@ -55,7 +55,7 @@ export const Skills = () => {
                       animation="fade-in"
                       delay={1 + index * 0.05}
                     >
-                      <div className="skill-badge p-6 rounded-xl text-center group relative bg-terminal-window/50 border border-accent/20 hover:border-accent/40 transition-all duration-300 hover:scale-105">
+                      <div className="skill-badge p-6 rounded-xl text-center group relative transition-all duration-300">
                         <div className="relative z-10">
                           {/* Simplified Icon */}
                           <div className="mb-4">

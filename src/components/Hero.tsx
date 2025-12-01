@@ -55,11 +55,7 @@ export const Hero = () => {
       </div>
 
       <AnimatedSection animation="slide-in-up" className="w-full relative z-10">
-        <TerminalWindow title="root@hiro:~#" className="w-full max-w-4xl mx-auto backdrop-blur-md bg-background/95 border-2 border-primary/30 shadow-2xl shadow-primary/10 hover:shadow-primary/20 transition-all duration-500 group relative overflow-hidden">
-          {/* Shiny border effect */}
-          <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
-            <div className="absolute -inset-[2px] bg-gradient-to-r from-primary/30 via-accent/40 to-secondary/30 rounded-lg blur-sm animate-pulse" />
-          </div>
+        <TerminalWindow title="root@hiro:~#" className="w-full max-w-4xl mx-auto">
           <div className="text-center space-y-8 relative z-10">
             {/* Enhanced Avatar with Stunning Glow */}
             <AnimatedSection animation="slide-in-up" delay={1} className="flex justify-center">
@@ -119,9 +115,8 @@ export const Hero = () => {
             
             {/* Enhanced Typing Animation with shiny border */}
             <AnimatedSection delay={2} className="min-h-[120px] flex items-center justify-center">
-              <div className="max-w-3xl mx-auto glass-card p-6 rounded-xl border-2 border-accent/30 hover:border-accent/50 transition-all duration-500 group relative overflow-hidden">
-                <div className="absolute -inset-[2px] bg-gradient-to-r from-primary/20 via-accent/30 to-secondary/20 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm" />
-                <p className="text-foreground/90 leading-relaxed text-lg font-light tracking-wide relative z-10">
+              <div className="max-w-3xl mx-auto glass-card p-6 rounded-xl transition-all duration-500">
+                <p className="text-foreground/90 leading-relaxed text-lg font-light tracking-wide">
                   {displayText}
                   <span className="cursor inline-block w-0.5 h-6 bg-gradient-to-b from-accent to-secondary ml-1 animate-pulse shadow-lg shadow-accent/50">|</span>
                 </p>
@@ -163,42 +158,38 @@ export const Hero = () => {
                 <Button 
                   variant="outline" 
                   size="lg" 
-                  className="hero-button group relative overflow-hidden border-accent/50 bg-background/50 hover:border-accent hover:bg-accent/20 hover:text-foreground transition-all duration-500 backdrop-blur-sm"
+                  className="glass-card group transition-all duration-500"
                   onClick={() => window.open(social.github, '_blank')}
                 >
-                  <div className="absolute inset-0 bg-gradient-to-r from-accent/10 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  <Github className="w-4 h-4 mr-2 group-hover:rotate-12 transition-transform duration-300 relative z-10" />
-                  <span className="relative z-10">GitHub</span>
+                  <Github className="w-4 h-4 mr-2 group-hover:rotate-12 transition-transform duration-300" />
+                  <span>GitHub</span>
                 </Button>
                 <Button 
                   variant="outline" 
                   size="lg" 
-                  className="hero-button group relative overflow-hidden border-accent/50 bg-background/50 hover:border-accent hover:bg-accent/20 hover:text-foreground transition-all duration-500 backdrop-blur-sm"
+                  className="glass-card group transition-all duration-500"
                   onClick={() => scrollToSection('contact')}
                 >
-                  <div className="absolute inset-0 bg-gradient-to-r from-accent/10 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  <FileText className="w-4 h-4 mr-2 group-hover:scale-110 transition-transform duration-300 relative z-10" />
-                  <span className="relative z-10">Contact</span>
+                  <FileText className="w-4 h-4 mr-2 group-hover:scale-110 transition-transform duration-300" />
+                  <span>Contact</span>
                 </Button>
                 <Button 
                   variant="outline" 
                   size="lg" 
-                  className="hero-button group relative overflow-hidden border-accent/50 bg-background/50 hover:border-accent hover:bg-accent/20 hover:text-foreground transition-all duration-500 backdrop-blur-sm"
+                  className="glass-card group transition-all duration-500"
                   onClick={() => scrollToSection('projects')}
                 >
-                  <div className="absolute inset-0 bg-gradient-to-r from-accent/10 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  <Download className="w-4 h-4 mr-2 group-hover:scale-110 transition-transform duration-300 relative z-10" />
-                  <span className="relative z-10">Projects</span>
+                  <Download className="w-4 h-4 mr-2 group-hover:scale-110 transition-transform duration-300" />
+                  <span>Projects</span>
                 </Button>
                 <Link to="/tools">
                   <Button 
                     variant="outline" 
                     size="lg" 
-                    className="hero-button group relative overflow-hidden border-accent/50 bg-background/50 hover:border-accent hover:bg-accent/20 hover:text-foreground transition-all duration-500 backdrop-blur-sm"
+                    className="glass-card group transition-all duration-500"
                   >
-                    <div className="absolute inset-0 bg-gradient-to-r from-accent/10 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                    <Calculator className="w-4 h-4 mr-2 group-hover:scale-110 transition-transform duration-300 relative z-10" />
-                    <span className="relative z-10">Tools</span>
+                    <Calculator className="w-4 h-4 mr-2 group-hover:scale-110 transition-transform duration-300" />
+                    <span>Tools</span>
                   </Button>
                 </Link>
               </div>

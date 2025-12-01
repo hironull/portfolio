@@ -30,8 +30,8 @@ export const About = () => {
               </div>
               
               <AnimatedSection animation="slide-in-up" delay={5}>
-                <div className="mt-8 p-4 bg-secondary rounded-md terminal-hover">
-                  <p className="text-secondary-foreground text-center font-mono relative skill-progress">
+                <div className="mt-8 p-4 glass-card rounded-lg">
+                  <p className="text-foreground text-center font-mono relative">
                     {content.about.availability}
                   </p>
                 </div>

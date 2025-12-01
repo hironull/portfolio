@@ -28,7 +28,7 @@ export const Contact = () => {
                 </AnimatedSection>
                 
                 <AnimatedSection animation="slide-in-up" delay={4}>
-                  <div className="flex items-center justify-center space-x-2 text-primary font-mono relative skill-progress glow-pulse">
+                  <div className="glass-card p-4 rounded-lg inline-flex items-center justify-center space-x-2 text-foreground font-mono">
                     <Mail className="w-5 h-5" />
                     <span>{personal.email}</span>
                   </div>
@@ -46,7 +46,7 @@ export const Contact = () => {
                       <Button 
                         variant="outline" 
                         size="sm"
-                        className="terminal-hover font-mono stagger-1 transition-all duration-300 hover:scale-105 hover:shadow-lg"
+                        className="glass-card font-mono stagger-1 transition-all duration-300 hover:scale-105"
                       >
                         <Mail className="w-4 h-4 mr-2" />
                         Email
@@ -55,7 +55,7 @@ export const Contact = () => {
                     <Button 
                       variant="outline" 
                       size="sm"
-                      className="terminal-hover font-mono stagger-2 transition-all duration-300 hover:scale-105 hover:shadow-lg"
+                      className="glass-card font-mono stagger-2 transition-all duration-300 hover:scale-105"
                       onClick={() => window.open(social.github, '_blank')}
                     >
                       <Github className="w-4 h-4 mr-2" />
@@ -64,7 +64,7 @@ export const Contact = () => {
                     <Button 
                       variant="outline" 
                       size="sm"
-                      className="terminal-hover font-mono stagger-3 transition-all duration-300 hover:scale-105 hover:shadow-lg"
+                      className="glass-card font-mono stagger-3 transition-all duration-300 hover:scale-105"
                       onClick={(event) => {
                         navigator.clipboard.writeText('hironull');
                         // Create a temporary tooltip or alert
