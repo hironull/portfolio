@@ -1,8 +1,17 @@
-import { DiscordProfile } from "../components/DiscordProfile";
+import { Hero } from "../components/Hero";
+import { About } from "../components/About";
+import { Skills } from "../components/Skills";
+import { Projects } from "../components/Projects";
+import { Contact } from "../components/Contact";
+import { ScrollProgress } from "../components/ScrollProgress";
+import { ParticleField } from "../components/ParticleField";
+import { StatsCarousel } from "../components/StatsCarousel";
+import { portfolioConfig } from "../config/portfolio.config";
 import { useState, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
 
 const Index = () => {
+  const { features } = portfolioConfig;
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
@@ -22,8 +31,22 @@ const Index = () => {
   }, []);
   
   return (
-    <div className={`min-h-screen bg-discord-dark relative transition-opacity duration-1000 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
-      <DiscordProfile />
+    <div className={`min-h-screen bg-background relative transition-opacity duration-1000 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
+      {/* Scroll Progress Indicator */}
+      {features.particles && <ScrollProgress />}
+      
+      {/* Particle Background Effect */}
+      {features.particles && <ParticleField />}
+      
+      {/* Main Content */}
+      <main className="relative z-10">
+        <Hero />
+        <StatsCarousel />
+        <About />
+        <Skills />
+        <Projects />
+        <Contact />
+      </main>
     </div>
   );
 };

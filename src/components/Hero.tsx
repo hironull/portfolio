@@ -46,6 +46,13 @@ export const Hero = () => {
 
   return (
     <section className="min-h-screen flex items-center justify-center p-4 relative overflow-hidden">
+      {/* Enhanced background with shiny gradients */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-primary/20 via-accent/20 to-secondary/20 rounded-full blur-3xl animate-float opacity-50" />
+        <div className="absolute top-3/4 right-1/4 w-80 h-80 bg-gradient-to-l from-accent/25 via-primary/15 to-secondary/20 rounded-full blur-2xl animate-float-delayed opacity-60" />
+        <div className="absolute top-1/2 left-1/2 w-72 h-72 bg-gradient-to-br from-primary/15 via-transparent to-accent/15 rounded-full blur-3xl animate-float-slow opacity-40" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/80 to-background" />
+      </div>
 
       <AnimatedSection animation="slide-in-up" className="w-full relative z-10">
         <TerminalWindow title="root@hiro:~#" className="w-full max-w-4xl mx-auto backdrop-blur-md bg-background/95 border-2 border-primary/30 shadow-2xl shadow-primary/10 hover:shadow-primary/20 transition-all duration-500 group relative overflow-hidden">
@@ -57,16 +64,45 @@ export const Hero = () => {
             {/* Enhanced Avatar with Stunning Glow */}
             <AnimatedSection animation="slide-in-up" delay={1} className="flex justify-center">
               <div className="relative group">
-                {/* Subtle glow */}
-                <div className="absolute -inset-3 bg-primary/20 rounded-full blur-lg opacity-50 group-hover:opacity-70 transition-all duration-500" />
+                {/* Enhanced Outer Glow Layers with shiny effect */}
+                <div className="absolute -inset-8 bg-gradient-to-r from-primary/40 via-accent/40 to-secondary/40 rounded-full blur-3xl opacity-70 animate-pulse" />
+                <div className="absolute -inset-6 bg-gradient-to-l from-accent/50 via-secondary/50 to-primary/50 rounded-full blur-2xl opacity-80 animate-pulse" style={{ animationDelay: '0.5s' }} />
+                <div className="absolute -inset-4 bg-gradient-to-br from-primary/60 via-accent/60 to-secondary/60 rounded-full blur-xl opacity-90 group-hover:opacity-100 transition-all duration-700" />
                 
-                {/* Avatar Container */}
+                {/* Enhanced Rotating Ring with shiny borders */}
+                <div className="absolute -inset-3 rounded-full animate-spin" style={{ animationDuration: '6s' }}>
+                  <div className="w-full h-full rounded-full bg-gradient-to-r from-primary/70 via-accent/80 via-transparent to-secondary/70 blur-sm" />
+                </div>
+                
+                {/* Enhanced Inner Border Glow */}
+                <div className="absolute -inset-2 bg-gradient-to-br from-primary/70 via-accent/70 to-secondary/70 rounded-full blur-md opacity-90 group-hover:opacity-100 transition-all duration-500" />
+                
+                {/* Avatar Container with enhanced border */}
                 <div className="relative">
                   <img 
                     src={pixelAvatar} 
                     alt={`${personal.name}'s avatar`} 
-                    className="relative w-32 h-32 rounded-full border-2 border-primary/40 group-hover:border-primary/60 shadow-lg group-hover:shadow-xl transition-all duration-500 transform group-hover:scale-105 pixel-art"
+                    className="relative w-32 h-32 rounded-full border-[3px] border-accent/60 group-hover:border-accent shadow-[0_0_15px_rgba(var(--accent),0.5)] group-hover:shadow-[0_0_25px_rgba(var(--accent),0.8)] transition-all duration-700 transform group-hover:scale-110 pixel-art"
                   />
+                  
+                  {/* Inner Highlight */}
+                  <div className="absolute inset-0 rounded-full bg-gradient-to-br from-white/20 via-transparent to-transparent opacity-30 group-hover:opacity-50 transition-opacity duration-500" />
+                </div>
+                
+                {/* Floating Particles */}
+                <div className="absolute inset-0 pointer-events-none">
+                  {[...Array(6)].map((_, i) => (
+                    <div
+                      key={i}
+                      className="absolute w-1 h-1 bg-accent/60 rounded-full animate-ping opacity-60"
+                      style={{
+                        left: `${20 + Math.cos(i * 60 * Math.PI / 180) * 60}%`,
+                        top: `${20 + Math.sin(i * 60 * Math.PI / 180) * 60}%`,
+                        animationDelay: `${i * 0.5}s`,
+                        animationDuration: `${2 + i * 0.3}s`
+                      }}
+                    />
+                  ))}
                 </div>
               </div>
             </AnimatedSection>

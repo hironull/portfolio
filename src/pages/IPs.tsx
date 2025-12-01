@@ -14,12 +14,6 @@ interface VisitorLog {
   visited_at: string;
   country: string | null;
   city: string | null;
-  region: string | null;
-  zip_code: string | null;
-  isp: string | null;
-  timezone: string | null;
-  latitude: number | null;
-  longitude: number | null;
 }
 
 const IPs = () => {
@@ -169,40 +163,13 @@ const IPs = () => {
                   <span className="truncate max-w-md">{log.referrer}</span>
                 </div>
 
-                {(log.country || log.city || log.region) && (
-                  <div className="flex items-center gap-2 text-sm flex-wrap">
+                {(log.country || log.city) && (
+                  <div className="flex items-center gap-2 text-sm">
                     <Globe className="w-4 h-4 text-muted-foreground" />
                     <span className="text-muted-foreground">Location:</span>
                     <Badge variant="outline">
-                      {[log.city, log.region, log.country].filter(Boolean).join(', ')}
+                      {[log.city, log.country].filter(Boolean).join(', ')}
                     </Badge>
-                    {log.zip_code && (
-                      <Badge variant="outline">ZIP: {log.zip_code}</Badge>
-                    )}
-                  </div>
-                )}
-
-                {log.isp && (
-                  <div className="flex items-center gap-2 text-sm">
-                    <Globe className="w-4 h-4 text-muted-foreground" />
-                    <span className="text-muted-foreground">ISP:</span>
-                    <Badge variant="secondary">{log.isp}</Badge>
-                  </div>
-                )}
-
-                {log.timezone && (
-                  <div className="flex items-center gap-2 text-sm">
-                    <Globe className="w-4 h-4 text-muted-foreground" />
-                    <span className="text-muted-foreground">Timezone:</span>
-                    <span className="text-sm">{log.timezone}</span>
-                  </div>
-                )}
-
-                {(log.latitude !== null && log.longitude !== null) && (
-                  <div className="flex items-center gap-2 text-sm">
-                    <Globe className="w-4 h-4 text-muted-foreground" />
-                    <span className="text-muted-foreground">Coordinates:</span>
-                    <span className="text-sm font-mono">{log.latitude}, {log.longitude}</span>
                   </div>
                 )}
               </CardContent>

@@ -27,55 +27,13 @@ Deno.serve(async (req) => {
 
     console.log('Logging visitor:', { ip, userAgent, referrer })
 
-    // Fetch detailed IP geolocation data
-    let geoData = {
-      country: null,
-      city: null,
-      region: null,
-      zip_code: null,
-      isp: null,
-      timezone: null,
-      latitude: null,
-      longitude: null,
-    }
-
-    if (ip !== 'unknown') {
-      try {
-        const geoResponse = await fetch(`https://ipapi.co/${ip}/json/`)
-        if (geoResponse.ok) {
-          const data = await geoResponse.json()
-          geoData = {
-            country: data.country_name || null,
-            city: data.city || null,
-            region: data.region || null,
-            zip_code: data.postal || null,
-            isp: data.org || null,
-            timezone: data.timezone || null,
-            latitude: data.latitude || null,
-            longitude: data.longitude || null,
-          }
-          console.log('Geo data fetched:', geoData)
-        }
-      } catch (geoError) {
-        console.error('Error fetching geo data:', geoError)
-      }
-    }
-
-    // Insert visitor log with geo data
+    // Insert visitor log
     const { error } = await supabase
       .from('visitor_logs')
       .insert({
         ip_address: ip,
         user_agent: userAgent,
         referrer: referrer,
-        country: geoData.country,
-        city: geoData.city,
-        region: geoData.region,
-        zip_code: geoData.zip_code,
-        isp: geoData.isp,
-        timezone: geoData.timezone,
-        latitude: geoData.latitude,
-        longitude: geoData.longitude,
       })
 
     if (error) {
