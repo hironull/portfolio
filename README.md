@@ -5,13 +5,6 @@ With **professional effects** and **modern designs**, your projects are guarante
 
 ---
 
-## Live Preview
-
-• Check out the live showcase: [Pixel Etch Showcase 58](https://yourliveurl.com)  
-• **Or deploy it instantly** (see deployment instructions below).
-
----
-
 ## Local Deployment
 
 To run the project locally, follow these steps:
