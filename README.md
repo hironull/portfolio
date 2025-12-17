@@ -53,4 +53,4 @@ Deploy this project to **Vercel** in seconds. Click the button below:
 
 ---
 
-_Achieve a professional and modern portfolio with Pixel Etch Showcase 58!_
+_Achieve a professional and modern portfolio!_
